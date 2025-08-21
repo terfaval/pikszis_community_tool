@@ -1,0 +1,27 @@
+{% if message %}
+<p>{{ message }}</p>
+{% elif question %}
+<form hx-post="/api/answers" hx-target="#random-card" class="flex flex-col gap-2">
+  <input type="hidden" name="question_id" value="{{ question.id }}" />
+  <input type="hidden" name="qtype" value="{{ question.qtype }}" />
+  <h3 class="font-bold">{{ question.title }}</h3>
+  <p class="text-sm">{{ question.instructions }}</p>
+  {% if question.qtype == 'likert_1_5' %}
+    {% for i in range(1,6) %}
+      <label><input type="radio" name="value" value="{{ i }}" required /> {{ i }}</label>
+    {% endfor %}
+  {% elif question.qtype == 'likert_1_4' %}
+    {% for i in range(1,5) %}
+      <label><input type="radio" name="value" value="{{ i }}" required /> {{ i }}</label>
+    {% endfor %}
+  {% elif question.qtype == 'open_text' %}
+    <textarea name="value" class="border p-2" required></textarea>
+  {% else %}
+    <p>coming soon</p>
+  {% endif %}
+  <div class="flex gap-2 mt-2">
+    <button type="submit" class="bg-blue-500 text-white px-3 py-1">Submit</button>
+    <button hx-post="/api/answers/skip" hx-include="[name=question_id]" hx-target="#random-card" class="px-3 py-1 border">Skip</button>
+  </div>
+</form>
+{% endif %}

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pikszis"
+version = "0.1.0"
+description = "Pikszis MVP FastAPI app"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "jinja2",
+    "supabase>=2.0",
+    "python-dotenv",
+    "httpx",
+]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+select = ["E","F","I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

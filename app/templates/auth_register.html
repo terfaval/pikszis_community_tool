@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<h1 class="text-xl mb-4">Register</h1>
+<form method="post" class="flex flex-col gap-2">
+  <input type="hidden" name="csrf_token" value="{{ csrf }}" />
+  <input name="email" type="email" placeholder="Email" class="border p-2" required />
+  <input name="password" type="password" placeholder="Password" class="border p-2" required />
+  <input name="display_name" type="text" placeholder="Display name" class="border p-2" required />
+  <button class="bg-blue-500 text-white px-4 py-2" type="submit">Register</button>
+</form>
+<p><a class="text-blue-500" href="/login">Login</a></p>
+{% endblock %}

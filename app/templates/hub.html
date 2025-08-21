@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Hub{% endblock %}
+{% block content %}
+<h1 class="text-xl mb-4">Question Hub</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="border p-4" id="random-card">
+    <h2 class="font-bold mb-2">Random question</h2>
+    <div hx-get="/api/questions/random" hx-target="#random-card" hx-swap="innerHTML"></div>
+  </div>
+  <div class="border p-4">
+    <h2 class="font-bold mb-2">Questionnaires</h2>
+    {% include 'questionnaire_list.html' %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<ul>
+  {% for q in questionnaires %}
+  <li><a class="text-blue-500" href="/q/{{ q.id }}">{{ q.title }}</a></li>
+  {% else %}
+  <li>No questionnaires</li>
+  {% endfor %}
+</ul>

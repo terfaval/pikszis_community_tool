@@ -1,0 +1,10 @@
+fastapi==0.112.*
+uvicorn[standard]==0.30.*
+supabase==2.*
+jinja2
+httpx
+python-multipart
+itsdangerous
+pydantic==2.*
+pydantic-settings==2.*
+python-dotenv

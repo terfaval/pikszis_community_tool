@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Questionnaire{% endblock %}
+{% block content %}
+{% if completed %}
+<p>Thank you for completing this questionnaire.</p>
+{% elif question %}
+<h2 class="font-bold mb-2">{{ question.title }}</h2>
+<p class="mb-2">{{ question.instructions }}</p>
+<form method="post" action="/q/{{ qid }}/answer" class="flex flex-col gap-2">
+  <input type="hidden" name="question_id" value="{{ question.id }}" />
+  <input type="hidden" name="qtype" value="{{ question.qtype }}" />
+  {% if question.qtype == 'likert_1_5' %}
+    {% for i in range(1,6) %}
+      <label><input type="radio" name="value" value="{{ i }}" required /> {{ i }}</label>
+    {% endfor %}
+  {% elif question.qtype == 'likert_1_4' %}
+    {% for i in range(1,5) %}
+      <label><input type="radio" name="value" value="{{ i }}" required /> {{ i }}</label>
+    {% endfor %}
+  {% elif question.qtype == 'open_text' %}
+    <textarea name="value" class="border p-2" required></textarea>
+  {% else %}
+    <p>coming soon</p>
+  {% endif %}
+  <div class="flex gap-2 mt-2">
+    <button type="submit" class="bg-blue-500 text-white px-3 py-1">Submit</button>
+    <button name="skip" value="true" class="px-3 py-1 border">Skip</button>
+  </div>
+</form>
+<p class="mt-2 text-sm">{{ progress[0] }}/{{ progress[1] }}</p>
+{% endif %}
+{% endblock %}

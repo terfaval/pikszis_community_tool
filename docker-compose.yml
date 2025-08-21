@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    environment:
+      - SUPABASE_URL
+      - SUPABASE_ANON_KEY
+      - SECRET_KEY
+      - CORE_QUESTIONNAIRE_IDS
+      - EMBED_ALLOWED_ORIGINS
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
