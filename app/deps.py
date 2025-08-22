@@ -2,8 +2,8 @@ import logging
 
 from fastapi import HTTPException, Request, status
 
-from .db import users
 from .security import get_token_from_cookie, verify_session_cookie
+from .supabase_client import get_admin_client
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,9 @@ async def get_current_user(request: Request):
         if wants_html:
             raise HTTPException(status_code=302, headers={"Location": "/login"})
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    user = users.get_user_by_id(user_id)
+    admin = get_admin_client()
+    result = admin.table("users").select("*").eq("id", user_id).execute()
+    user = result.data[0] if result.data else None
     if not user:
         logger.info("User %s not found", user_id)
         if wants_html:

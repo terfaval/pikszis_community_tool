@@ -68,7 +68,8 @@ class FakeSupabase:
 @pytest.fixture(autouse=True)
 def fake_supabase(monkeypatch):
     fake = FakeSupabase()
-    monkeypatch.setattr("app.db.users.supabase", fake)
+    monkeypatch.setattr("app.db.users.admin", fake)
+    monkeypatch.setattr("app.deps.get_admin_client", lambda: fake)
     monkeypatch.setattr("app.routers.hub.supabase", fake)
     return fake
 
@@ -77,7 +78,7 @@ def register(client, email="a@b.c", password="pw", display_name="A"):
     r = client.get("/register")
     token = r.cookies.get("csrf_token")
     return client.post(
-        "/register",
+        "/auth/register",
         data={
             "email": email,
             "password": password,
@@ -92,7 +93,7 @@ def login(client, email="a@b.c", password="pw"):
     r = client.get("/login")
     token = r.cookies.get("csrf_token")
     return client.post(
-        "/login",
+        "/auth/login",
         data={"email": email, "password": password, "csrf_token": token},
         allow_redirects=False,
     )
@@ -126,7 +127,7 @@ def test_login_invalid_password(fake_supabase):
 
     resp = login(client, "user@example.com", "wrong")
     assert resp.status_code == 200
-    assert "Invalid credentials" in resp.text
+    assert "Hibás jelszó" in resp.text
 
 
 def test_login_csrf_failure(fake_supabase):
@@ -136,11 +137,11 @@ def test_login_csrf_failure(fake_supabase):
     register(client)
 
     # Intentionally provide bad CSRF token
-    client.get("/login")
+    client.get("/auth/login")
     resp = client.post(
         "/login",
         data={"email": "a@b.c", "password": "pw", "csrf_token": "bad"},
         allow_redirects=False,
     )
     assert resp.status_code == 200
-    assert "Invalid CSRF token" in resp.text
+    assert "Érvénytelen kérés" in resp.text
