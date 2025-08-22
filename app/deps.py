@@ -10,16 +10,24 @@ logger = logging.getLogger(__name__)
 
 async def get_current_user(request: Request):
     token = get_token_from_cookie(request)
+    accept = request.headers.get("accept", "")
+    wants_html = "text/html" in accept or accept == "*/*"
     if not token:
         logger.info("No session cookie present")
+        if wants_html:
+            raise HTTPException(status_code=302, headers={"Location": "/login"})
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     user_id = verify_session_cookie(token)
     if not user_id:
         logger.info("Session verification failed")
+        if wants_html:
+            raise HTTPException(status_code=302, headers={"Location": "/login"})
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     user = users.get_user_by_id(user_id)
     if not user:
         logger.info("User %s not found", user_id)
+        if wants_html:
+            raise HTTPException(status_code=302, headers={"Location": "/login"})
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
     return {
         "id": user["id"],

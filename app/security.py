@@ -40,6 +40,7 @@ def set_session(response: Response, user_id: str) -> None:
 
 def clear_session(response: Response) -> None:
     response.delete_cookie(SESSION_COOKIE)
+    logger.info("Cleared session cookie")
 
 
 def get_token_from_cookie(request: Request) -> str | None:
