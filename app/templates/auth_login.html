@@ -1,12 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'layouts/login_base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<h1 class="text-xl mb-4">Login</h1>
-<form method="post" class="flex flex-col gap-2">
-  <input type="hidden" name="csrf_token" value="{{ csrf }}" />
-  <input name="email" type="email" placeholder="Email" class="border p-2" required />
-  <input name="password" type="password" placeholder="Password" class="border p-2" required />
-  <button class="bg-blue-500 text-white px-4 py-2" type="submit">Login</button>
-</form>
-<p><a class="text-blue-500" href="/register">Register</a></p>
+<div class="container flex flex-col items-center justify-center w-full h-full">
+  <div class="mandalaContainer"></div>
+  <div class="content flex flex-col items-center w-full">
+    <div class="box w-[90%] max-w-sm p-6 bg-white rounded-lg shadow">
+      <div class="iconRow mb-4"></div>
+      <h1 class="title text-2xl text-center mb-1">Login</h1>
+      <p class="subtitle text-center text-gray-600 mb-4">Enter your credentials to continue</p>
+      <form method="post" class="form flex flex-col gap-4">
+        <input type="hidden" name="csrf_token" value="{{ csrf }}" />
+        <input name="email" type="email" placeholder="Email" class="input border p-2 rounded" required />
+        <input name="password" type="password" placeholder="Password" class="input border p-2 rounded" required />
+        {% if error %}
+        <p class="error text-red-500 text-sm">{{ error }}</p>
+        {% endif %}
+        <button class="submitButton bg-blue-500 text-white py-2 rounded" type="submit">Login</button>
+      </form>
+      <p class="registerLink text-center mt-4">Don't have an account? <a href="/register" class="text-blue-500">Register</a></p>
+    </div>
+    <a href="#" class="guestButton text-center mt-4 text-sm text-gray-700">Continue as guest</a>
+  </div>
+</div>
 {% endblock %}
