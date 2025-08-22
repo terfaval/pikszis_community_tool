@@ -78,13 +78,13 @@ def test_protected_route(monkeypatch):
         def table(self, name):
             return FakeTable()
 
-    monkeypatch.setattr("app.routers.hub.get_supabase_client", lambda: FakeClient())
+    monkeypatch.setattr("app.routers.hub.supabase", FakeClient())
     register(client, "p@q.c", "pw", "PQ")
     resp = login(client, "p@q.c", "pw")
     cookie = resp.cookies.get(settings.COOKIE_NAME)
 
     unauth_client = TestClient(app)
-    monkeypatch.setattr("app.routers.hub.get_supabase_client", lambda: FakeClient())
+    monkeypatch.setattr("app.routers.hub.supabase", FakeClient())
     r = unauth_client.get("/app")
     assert r.status_code == 401
 
