@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from .config import settings
-from .templates import templates
 from .routers import auth, hub, questionnaire_api, random_api
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
+templates = Jinja2Templates(directory="app/templates")
 
 # --- CORS origins robust parsing ---
 origins = []
