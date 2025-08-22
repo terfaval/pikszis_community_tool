@@ -1,8 +1,10 @@
+import sqlite3
+
 from fastapi import APIRouter, Form, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+
 import bcrypt
-import sqlite3
 
 from ..db import users
 from ..security import (

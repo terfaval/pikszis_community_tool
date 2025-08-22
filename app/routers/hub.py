@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Depends
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -15,10 +15,15 @@ def get_templates(request: Request) -> Jinja2Templates:
 @router.get("/app", response_class=HTMLResponse)
 async def app_hub(request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
-    result = supabase.table("questionnaires").select("*").eq("is_active", True).execute()
+    result = (
+        supabase.table("questionnaires")
+        .select("*")
+        .eq("is_active", True)
+        .execute()
+    )
     questionnaires = result.data or []
 
-    return templates.TemplateResponse(
+    return request.app.state.templates.TemplateResponse(
         "hub.html",
         {
             "request": request,

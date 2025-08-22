@@ -1,6 +1,6 @@
 import sqlite3
 import uuid
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 # Simple SQLite-based user repository. In-memory DB for tests.
 # Using shared connection since app is small.

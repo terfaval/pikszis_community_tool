@@ -1,10 +1,11 @@
 import types
-import bcrypt
+
 from fastapi.testclient import TestClient
 
-from app.main import app
+import bcrypt
 from app.config import settings
 from app.db import users
+from app.main import app
 
 
 def register(client, email="a@b.c", password="pw", display_name="A"):

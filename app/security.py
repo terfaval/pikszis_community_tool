@@ -1,6 +1,7 @@
 import secrets
-from itsdangerous import BadSignature, URLSafeSerializer
+
 from fastapi import Request, Response
+from itsdangerous import BadSignature, URLSafeSerializer
 
 from .config import settings
 

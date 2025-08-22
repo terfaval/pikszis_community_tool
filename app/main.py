@@ -9,21 +9,25 @@ from .routers import auth, hub, questionnaire_api, random_api
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="app/templates")
 
 # --- CORS origins robust parsing ---
-origins = []
+origins: list[str] = []
 if settings.EMBED_ALLOWED_ORIGINS:
-    origins = [o.strip() for o in settings.EMBED_ALLOWED_ORIGINS.split(",") if o.strip()]
+    origins = [
+        o.strip()
+        for o in settings.EMBED_ALLOWED_ORIGINS.split(",")
+        if o.strip()
+    ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins or ["*"],  # dev: minden engedett; PROD-ban állíts pontos listát!
+    allow_origins=origins or ["*"],  # dev: allow all; prod: specify list
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+templates = Jinja2Templates(directory="app/templates")
 app.state.templates = templates
 
 app.include_router(auth.router)
