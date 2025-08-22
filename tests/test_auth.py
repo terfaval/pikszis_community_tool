@@ -116,3 +116,31 @@ def test_auth_flow(fake_supabase):
     client.cookies.set(settings.COOKIE_NAME, cookie)
     r = client.get("/app")
     assert r.status_code == 200
+
+
+def test_login_invalid_password(fake_supabase):
+    users.clear_users()
+    client = TestClient(app)
+
+    register(client, "user@example.com", "secret", "User")
+
+    resp = login(client, "user@example.com", "wrong")
+    assert resp.status_code == 200
+    assert "Invalid credentials" in resp.text
+
+
+def test_login_csrf_failure(fake_supabase):
+    users.clear_users()
+    client = TestClient(app)
+
+    register(client)
+
+    # Intentionally provide bad CSRF token
+    client.get("/login")
+    resp = client.post(
+        "/login",
+        data={"email": "a@b.c", "password": "pw", "csrf_token": "bad"},
+        allow_redirects=False,
+    )
+    assert resp.status_code == 200
+    assert "Invalid CSRF token" in resp.text
