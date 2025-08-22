@@ -15,7 +15,7 @@ def get_templates(request: Request):
 def fetch_questionnaires(client):
     data = (
         client.table("questionnaires")
-        .select("id,title,is_active")
+        .select("id,title,description,is_active")
         .eq("is_active", True)
         .execute()
         .data

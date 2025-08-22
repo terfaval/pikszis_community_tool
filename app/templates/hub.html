@@ -1,15 +1,45 @@
 {% extends 'base.html' %}
 {% block title %}Hub{% endblock %}
 {% block content %}
-<h1 class="text-xl mb-4">Question Hub</h1>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div class="border p-4" id="random-card">
-    <h2 class="font-bold mb-2">Random question</h2>
-    <div hx-get="/api/questions/random" hx-target="#random-card" hx-swap="innerHTML"></div>
-  </div>
-  <div class="border p-4">
-    <h2 class="font-bold mb-2">Questionnaires</h2>
-    {% include 'questionnaire_list.html' %}
+<div class="hub-wrapper">
+  <div class="hub-container">
+    <h1 class="hub-title">Üdv újra itt!</h1>
+    <p class="hub-subtitle">Válassz, hogyan szeretnél folytatni</p>
+
+    <!-- RANDOM QUESTION CARD -->
+    <div class="random-card">
+      <h2 class="random-card-title">Nézzük meg, mit kérdeznénk tőled most</h2>
+      <button class="random-button" hx-get="/api/questions/random" hx-target="#random-question" hx-swap="innerHTML">
+        Mutass kérdést
+      </button>
+    </div>
+
+    <!-- HTMX Target for Random Question -->
+    <div id="random-question" class="mt-4"></div>
+
+    <!-- QUESTIONNAIRE GRID -->
+    <h2 class="grid-title">Választható kérdőívek</h2>
+    <div class="questionnaire-grid">
+      {% for q in questionnaires %}
+      <div class="card" data-slug="{{ q.id }}">
+        <div class="card-inner">
+          <div class="card-front card-color-{{ loop.index % 5 }}">
+            <div class="card-header">
+              <h3 class="card-title">{{ q.title }}</h3>
+              <button class="info-button" onclick="flipCard('{{ q.id }}')">ℹ️</button>
+            </div>
+            <a href="/q/{{ q.id }}" class="card-link">Töltsd ki</a>
+          </div>
+          <div class="card-back">
+            <p class="card-description">{{ q.description or "Nincs leírás." }}</p>
+            <button class="back-button" onclick="flipCard('{{ q.id }}')">↩</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
+<link rel="stylesheet" href="/static/hub.css">
+<script src="/static/hub.js" defer></script>
 {% endblock %}
