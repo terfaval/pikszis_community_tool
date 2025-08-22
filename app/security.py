@@ -1,3 +1,4 @@
+import logging
 import secrets
 
 from fastapi import Request, Response
@@ -8,6 +9,7 @@ from .config import settings
 SESSION_COOKIE = settings.COOKIE_NAME
 CSRF_COOKIE = "csrf_token"
 _serializer = URLSafeSerializer(settings.SECRET_KEY, salt="session")
+logger = logging.getLogger(__name__)
 
 
 def sign_session_cookie(user_id: str) -> str:
@@ -18,6 +20,7 @@ def verify_session_cookie(token: str) -> str | None:
     try:
         data = _serializer.loads(token)
     except BadSignature:
+        logger.info("Invalid session cookie signature")
         return None
     return data.get("user_id")
 
@@ -28,8 +31,11 @@ def set_session(response: Response, user_id: str) -> None:
         SESSION_COOKIE,
         token,
         httponly=True,
-        samesite=settings.COOKIE_SAMESITE,
+        samesite=settings.COOKIE_SAMESITE,secure=settings.COOKIE_SECURE,
+        max_age=settings.SESSION_MAX_AGE,
+        path="/",
     )
+    logger.info("Set session cookie for user %s", user_id)
 
 
 def clear_session(response: Response) -> None:

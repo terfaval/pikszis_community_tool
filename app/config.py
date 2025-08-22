@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = Field("change-me", description="Cookie signing key")
     COOKIE_NAME: str = "pikszis_session"
     COOKIE_SAMESITE: str = "lax"
+    COOKIE_SECURE: bool = False
+    SESSION_MAX_AGE: int = 60 * 60 * 24 * 30  # 30 days
 
     # WordPress embed / CORS
     EMBED_ALLOWED_ORIGINS: Optional[str] = None  # comma-separated origins, e.g. "https://example.com,https://foo.bar"

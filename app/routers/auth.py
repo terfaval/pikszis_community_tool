@@ -1,4 +1,4 @@
-import sqlite3
+import logging
 
 from fastapi import APIRouter, Form, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -16,6 +16,8 @@ from ..security import (
 )
 
 router = APIRouter()
+
+logger = logging.getLogger(__name__)
 
 
 def get_templates(request: Request) -> Jinja2Templates:
@@ -46,8 +48,10 @@ async def register(
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     try:
         user = users.create_user(email, password_hash, display_name)
-    except sqlite3.IntegrityError:
+    except Exception:
+        logger.info("Registration failed for %s", email)
         raise HTTPException(status_code=400, detail="Email already registered")
+    logger.info("Registered user %s", email)
     print(f"Welcome email to {email}")  # placeholder for future email sending
     response = RedirectResponse("/app", status_code=302)
     set_session(response, user["id"])
@@ -78,7 +82,9 @@ async def login(
     if not user or not bcrypt.checkpw(
         password.encode(), user["password_hash"].encode()
     ):
+        logger.info("Login failed for %s", email)
         raise HTTPException(status_code=400, detail="Login failed")
+    logger.info("Login succeeded for %s", email)
     response = RedirectResponse("/app", status_code=302)
     set_session(response, user["id"])
     return response
