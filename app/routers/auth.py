@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Form, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+import bcrypt
+import sqlite3
 
+from ..db import users
 from ..security import (
     clear_session,
     generate_csrf_token,
@@ -9,7 +12,6 @@ from ..security import (
     set_session,
     validate_csrf,
 )
-from ..supabase_client import get_supabase_client
 
 router = APIRouter()
 
@@ -39,18 +41,14 @@ async def register(
 ):
     if not validate_csrf(request, csrf_token):
         raise HTTPException(status_code=400, detail="Bad CSRF token")
-    client = get_supabase_client()
-    resp = client.auth.sign_up(
-        {
-            "email": email,
-            "password": password,
-            "options": {"data": {"display_name": display_name}},
-        }
-    )
-    if not resp.session:
-        raise HTTPException(status_code=400, detail="Registration failed")
+    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+    try:
+        user = users.create_user(email, password_hash, display_name)
+    except sqlite3.IntegrityError:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    print(f"Welcome email to {email}")  # placeholder for future email sending
     response = RedirectResponse("/app", status_code=302)
-    set_session(response, resp.session.access_token)
+    set_session(response, user["id"])
     return response
 
 
@@ -74,12 +72,13 @@ async def login(
 ):
     if not validate_csrf(request, csrf_token):
         raise HTTPException(status_code=400, detail="Bad CSRF token")
-    client = get_supabase_client()
-    data = client.auth.sign_in_with_password({"email": email, "password": password})
-    if not data.session:
+    user = users.get_user_by_email(email)
+    if not user or not bcrypt.checkpw(
+        password.encode(), user["password_hash"].encode()
+    ):
         raise HTTPException(status_code=400, detail="Login failed")
     response = RedirectResponse("/app", status_code=302)
-    set_session(response, data.session.access_token)
+    set_session(response, user["id"])
     return response
 
 

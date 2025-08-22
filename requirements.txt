@@ -8,3 +8,4 @@ itsdangerous
 pydantic==2.*
 pydantic-settings==2.*
 python-dotenv
+bcrypt

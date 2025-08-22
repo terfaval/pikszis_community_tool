@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse
 
 from ..config import settings
 from ..deps import get_current_user
-from ..security import get_token_from_cookie
 from ..supabase_client import get_supabase_client
 
 router = APIRouter()
@@ -32,8 +31,7 @@ def fetch_questionnaires(client):
 @router.get("/app", response_class=HTMLResponse)
 async def hub_page(request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
-    token = get_token_from_cookie(request)
-    client = get_supabase_client(token)
+    client = get_supabase_client()
     questionnaires = fetch_questionnaires(client)
     return templates.TemplateResponse(
         "hub.html", {"request": request, "user": user, "questionnaires": questionnaires}
@@ -43,8 +41,7 @@ async def hub_page(request: Request, user=Depends(get_current_user)):
 @router.get("/embed", response_class=HTMLResponse)
 async def embed_page(request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
-    token = get_token_from_cookie(request)
-    client = get_supabase_client(token)
+    client = get_supabase_client()
     questionnaires = fetch_questionnaires(client)
     return templates.TemplateResponse(
         "embed_hub.html",

@@ -4,7 +4,6 @@ from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 
 from ..deps import get_current_user
-from ..security import get_token_from_cookie
 from ..services import answers, submissions
 from ..supabase_client import get_supabase_client
 
@@ -34,8 +33,7 @@ def load_questions(client, questionnaire_id: str):
 @router.get("/q/{qid}", response_class=HTMLResponse)
 async def run_questionnaire(qid: str, request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
-    token = get_token_from_cookie(request)
-    client = get_supabase_client(token)
+    client = get_supabase_client()
     sub = submissions.get_or_create_submission(client, user["id"], qid, "targeted")
     questions = load_questions(client, qid)
     idx = sub.get("current_ord", 0)
@@ -68,8 +66,7 @@ async def answer_question(
     value: str | None = Form(None),
     skip: str | None = Form(None),
 ):
-    token = get_token_from_cookie(request)
-    client = get_supabase_client(token)
+    client = get_supabase_client()
     sub = submissions.get_or_create_submission(client, user["id"], qid, "targeted")
     if skip:
         answers.insert_answer(client, sub["id"], question_id, {"skipped": True})

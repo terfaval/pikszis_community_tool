@@ -1,17 +1,33 @@
 import secrets
-
+from itsdangerous import BadSignature, URLSafeSerializer
 from fastapi import Request, Response
 
-SESSION_COOKIE = "sb_access_token"
+from .config import settings
+
+SESSION_COOKIE = settings.COOKIE_NAME
 CSRF_COOKIE = "csrf_token"
+_serializer = URLSafeSerializer(settings.SECRET_KEY, salt="session")
 
 
-def set_session(response: Response, access_token: str) -> None:
+def sign_session_cookie(user_id: str) -> str:
+    return _serializer.dumps({"user_id": user_id})
+
+
+def verify_session_cookie(token: str) -> str | None:
+    try:
+        data = _serializer.loads(token)
+    except BadSignature:
+        return None
+    return data.get("user_id")
+
+
+def set_session(response: Response, user_id: str) -> None:
+    token = sign_session_cookie(user_id)
     response.set_cookie(
         SESSION_COOKIE,
-        access_token,
+        token,
         httponly=True,
-        samesite="lax",
+        samesite=settings.COOKIE_SAMESITE,
     )
 
 

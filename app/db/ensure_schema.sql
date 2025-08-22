@@ -4,6 +4,14 @@ create type if not exists q_type as enum (
 create type if not exists q_status as enum ('draft','submitted');
 create type if not exists q_mode as enum ('random','targeted','idea','community');
 
+create table if not exists users (
+  id uuid primary key default gen_random_uuid(),
+  email text unique not null,
+  password_hash text not null,
+  display_name text not null,
+  created_at timestamptz default now()
+);
+
 create table if not exists questionnaires (
   id text primary key,
   title text,
