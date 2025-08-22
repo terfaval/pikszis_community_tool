@@ -1,26 +1,26 @@
 {% extends 'layouts/login_base.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-<div class="container flex flex-col items-center justify-center w-full h-full">
-  <div class="mandalaContainer"></div>
-  <div class="content flex flex-col items-center w-full">
-    <div class="box w-[90%] max-w-sm p-6 bg-white rounded-lg shadow">
-      <div class="iconRow mb-4"></div>
-      <h1 class="title text-2xl text-center mb-1">Register</h1>
-      <p class="subtitle text-center text-gray-600 mb-4">Create your account to get started</p>
-      <form method="post" class="form flex flex-col gap-4">
+<div class="flex items-center justify-center w-full h-full gap-8">
+  <img src="{{ url_for('static', path='icons/pikszis_logo.svg') }}" alt="Pikszis logo" class="w-32 h-32" />
+  <div class="flex flex-col items-center">
+    <div class="w-[90%] max-w-sm p-6 bg-white rounded-lg shadow">
+      <h1 class="text-2xl text-center mb-1">Register</h1>
+      <p class="text-center text-gray-600 mb-4">Create your account to get started</p>
+      <form method="post" class="flex flex-col gap-4">
         <input type="hidden" name="csrf_token" value="{{ csrf }}" />
-        <input name="email" type="email" placeholder="Email" class="input border p-2 rounded" required />
-        <input name="password" type="password" placeholder="Password" class="input border p-2 rounded" required />
-        <input name="display_name" type="text" placeholder="Display name" class="input border p-2 rounded" required />
+        <input name="email" type="email" placeholder="Email" class="border p-2 rounded" required />
+        <input name="password" type="password" placeholder="Password" class="border p-2 rounded" required />
+        <input name="display_name" type="text" placeholder="Display name" class="border p-2 rounded" required />
         {% if error %}
-        <p class="error text-red-500 text-sm">{{ error }}</p>
+        <p class="text-red-500 text-sm">{{ error }}</p>
         {% endif %}
-        <button class="submitButton bg-blue-500 text-white py-2 rounded" type="submit">Register</button>
+        <button class="bg-blue-500 text-white py-2 rounded" type="submit">Register</button>
       </form>
-      <p class="loginLink text-center mt-4">Already have an account? <a href="/login" class="text-blue-500">Login</a></p>
+      <p class="text-center mt-4">Already have an account? <a href="/login" class="text-blue-500">Login</a></p>
     </div>
-    <a href="#" class="guestButton text-center mt-4 text-sm text-gray-700">Continue as guest</a>
+    <a href="#" class="text-center mt-4 text-sm text-gray-700">Continue as guest</a>
   </div>
+  <img src="{{ url_for('static', path='icons/logo_text.svg') }}" alt="Pikszis text logo" class="w-32 h-32" />
 </div>
 {% endblock %}
