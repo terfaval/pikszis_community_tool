@@ -1,0 +1,26 @@
+<div class="flex gap-2 items-center">
+  {% for i in range(1,5) %}
+    <label class="cursor-pointer group">
+      <input class="sr-only peer" type="radio" name="value" value="{{ i }}" required />
+      <span class="inline-flex h-6 w-6 rounded-full border
+                   peer-checked:bg-yellow-400
+                   group-hover:bg-yellow-200
+                   transition-colors"></span>
+    </label>
+  {% endfor %}
+</div>
+
+<script>
+  // progressive enhancement: ha akarjuk, előző bubik is „felvillannak”
+  (function(){
+    const form = document.currentScript.closest('form');
+    const radios = form.querySelectorAll('input[name="value"]');
+    function repaint(n){
+      const bulbs = form.querySelectorAll('label > span');
+      bulbs.forEach((b, idx) => {
+        b.style.opacity = (idx < n) ? '1' : '0.3';
+      });
+    }
+    radios.forEach(r => r.addEventListener('change', () => repaint(parseInt(r.value,10))));
+  })();
+</script>

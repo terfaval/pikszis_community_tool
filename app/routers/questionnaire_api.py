@@ -75,6 +75,23 @@ async def answer_question(
             normalized = {"likert": int(value)}
         elif qtype == "open_text":
             normalized = {"text": value}
+        # ... az elif-ek közé:
+        elif qtype in ("open_long", "open_short"):
+            normalized = {"text": value}
+
+        elif qtype == "open_multiple":
+    # value formátum: JSON string vagy több mező -> itt input nevétől függ
+    # javaslat: value helyett több inputot küldünk: value_1, value_2, ...
+            data = {}
+            for i in range(1, 10):  # upper bound
+                v = request.form()._dict.get(f"value_{i}")  # vagy await request.form()
+                if v:
+                    data[str(i)] = v
+            normalized = {"list": [v for _, v in sorted(data.items())]}
+
+        elif qtype in ("likert_slider_1_5", "likert_slider_1_4", "rating_stars_1_5"):
+            normalized = {"likert": int(value)}
+
         else:
             normalized = {"raw": value}
         answers.insert_answer(client, sub["id"], question_id, normalized)

@@ -14,6 +14,16 @@ uvicorn app.main:app --reload
 
 Copy `.env.example` to `.env` and fill in the Supabase keys before running.
 
+### Database migrations
+
+Run pending SQL migrations against your database:
+
+```bash
+psql "$DATABASE_URL" -f app/db/migrations/20250823_add_length_minutes.sql
+```
+
+The main hub page now includes a bottom-right **Kérdőívek szerkesztése** button linking to `/admin/q` for questionnaire administration.
+
 ### Docker
 
 ```bash
