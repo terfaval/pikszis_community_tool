@@ -8,28 +8,36 @@
       <thead class="bg-gray-50">
         <tr>
           <th class="text-left px-4 py-2">ID</th>
-          <th class="text-left px-4 py-2">Cím</th>
-          <th class="text-left px-4 py-2">Leírás</th>
+          <th class="text-left px-4 py-2">Név</th>
+          <th class="text-left px-4 py-2">Hosszúság (perc)</th>
           <th class="text-left px-4 py-2">Aktív</th>
-          <th class="text-left px-4 py-2">Random pool</th>
-          <th class="text-left px-4 py-2"></th>
+          <th class="text-left px-4 py-2">Szerk.</th>
         </tr>
       </thead>
       <tbody>
         {% for q in questionnaires %}
-        <tr class="border-t">
+        <tr class="border-t hover:bg-gray-50">
           <td class="px-4 py-2">{{ q.id }}</td>
           <td class="px-4 py-2 font-medium">{{ q.title }}</td>
-          <td class="px-4 py-2 text-gray-600">{{ q.description or "" }}</td>
+          <td class="px-4 py-2">{{ q.length_minutes if q.length_minutes is not none else '' }}{% if q.length_minutes is not none %} perc{% endif %}</td>
           <td class="px-4 py-2">{{ "✓" if q.is_active else "—" }}</td>
-          <td class="px-4 py-2">{{ "✓" if q.in_random_pool else "—" }}</td>
-          <td class="px-4 py-2">
-            <a class="underline" href="/admin/q/{{ q.id }}">Megnyit</a>
+          <td class="px-4 py-2 text-center">
+            <a href="/admin/q/{{ q.id }}/edit" class="inline-block text-blue-600 hover:text-blue-800" title="Szerkesztés">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h-4a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </a>
           </td>
         </tr>
         {% else %}
-        <tr><td class="px-4 py-3 text-gray-500" colspan="6">Nincs kérdőív.</td></tr>
+        <tr><td class="px-4 py-3 text-gray-500" colspan="5">Nincs kérdőív.</td></tr>
         {% endfor %}
+        <tr class="border-t hover:bg-gray-50">
+          <td colspan="5" class="px-4 py-3 text-center italic text-blue-700 hover:text-blue-900">
+            <a href="/admin/q/new" class="inline-flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Új kérdőív hozzáadása</span>
+            </a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

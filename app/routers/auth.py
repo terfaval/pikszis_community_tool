@@ -156,6 +156,18 @@ async def login(
     return response
 
 
+@router.post("/login")
+async def login_alias(
+    request: Request,
+    email: str = Form(...),
+    password: str = Form(...),
+    csrf_token: str = Form(...),
+):
+    """Backward compatible login endpoint used in older clients/tests."""
+
+    return await login(request, email, password, csrf_token)
+
+
 @router.post("/logout")
 async def logout():
     response = RedirectResponse("/login", status_code=302)
