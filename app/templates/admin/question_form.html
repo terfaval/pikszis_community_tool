@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-3xl mx-auto p-6">
+  <h1 class="text-2xl font-semibold mb-4">{% if question.id %}Kérdés szerkesztése{% else %}Új kérdés{% endif %}</h1>
+  <form id="question-form" data-question-id="{{ question.id }}" method="post" action="/admin/q/{{ questionnaire_id }}/question_upsert" onsubmit="return confirm('Biztosan mented a változtatásokat?');" class="space-y-4">
+    {% if question.id %}
+    <input type="hidden" name="id" value="{{ question.id }}" />
+    {% endif %}
+    <div>
+      <label class="block mb-1 font-medium" for="title">Cím</label>
+      <input type="text" id="title" name="title" value="{{ question.title or '' }}" class="border rounded w-full p-2" required />
+    </div>
+    <div>
+      <label class="block mb-1 font-medium" for="instructions">Instrukció</label>
+      <textarea id="instructions" name="instructions" class="border rounded w-full p-2">{{ question.instructions or '' }}</textarea>
+    </div>
+    <div>
+      <label class="block mb-1 font-medium" for="qtype">Típus</label>
+      <select id="qtype" name="qtype" class="border rounded w-full p-2" required>
+        <option value="">-- Válassz --</option>
+        <option value="open_short" {% if question.qtype=='open_short' %}selected{% endif %}>Nyitott rövid</option>
+        <option value="open_long" {% if question.qtype=='open_long' %}selected{% endif %}>Nyitott hosszú</option>
+        <option value="open_multiple" {% if question.qtype=='open_multiple' %}selected{% endif %}>Nyitott több</option>
+        <option value="single_choice" {% if question.qtype=='single_choice' %}selected{% endif %}>Egy választás</option>
+        <option value="multiple_choice" {% if question.qtype=='multiple_choice' %}selected{% endif %}>Több választás</option>
+        <option value="true_false" {% if question.qtype=='true_false' %}selected{% endif %}>Igaz / Hamis</option>
+        <option value="likert_1_4" {% if question.qtype=='likert_1_4' %}selected{% endif %}>Likert 1-4</option>
+        <option value="likert_1_5" {% if question.qtype=='likert_1_5' %}selected{% endif %}>Likert 1-5</option>
+        <option value="likert_slider_1_4" {% if question.qtype=='likert_slider_1_4' %}selected{% endif %}>Likert csúszka 1-4</option>
+        <option value="likert_slider_1_5" {% if question.qtype=='likert_slider_1_5' %}selected{% endif %}>Likert csúszka 1-5</option>
+        <option value="rating_stars_1_5" {% if question.qtype=='rating_stars_1_5' %}selected{% endif %}>Csillagos 1-5</option>
+      </select>
+    </div>
+    <div id="likert-variant" class="{% if not question.qtype or not question.qtype.startswith('likert') %}hidden{% endif %}">
+      <label class="block mb-1 font-medium" for="likert_variant">Likert variáns</label>
+      <input type="text" id="likert_variant" name="likert_variant" value="{{ question.likert_variant or '' }}" class="border rounded w-full p-2" />
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" name="required" class="sr-only peer" {% if question.required %}checked{% endif %}>
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:h-5 after:w-5 after:rounded-full after:transition-all peer-checked:after:translate-x-full"></div>
+        <span class="ml-2">Kötelező</span>
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" name="random_order" class="sr-only peer" {% if question.random_order %}checked{% endif %}>
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:h-5 after:w-5 after:rounded-full after:transition-all peer-checked:after:translate-x-full"></div>
+        <span class="ml-2">Opciók véletlen sorrendben</span>
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" name="random_multi" class="sr-only peer" {% if question.random_answer %}checked{% endif %}>
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:h-5 after:w-5 after:rounded-full after:transition-all peer-checked:after:translate-x-full"></div>
+        <span class="ml-2">Véletlen többválasz</span>
+      </label>
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" name="in_random_pool" class="sr-only peer" {% if question.in_random_pool %}checked{% endif %}>
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 relative after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:h-5 after:w-5 after:rounded-full after:transition-all peer-checked:after:translate-x-full"></div>
+        <span class="ml-2">Random pool</span>
+      </label>
+    </div>
+
+    <div id="options-section" class="mt-6 {% if question.qtype not in ['single_choice','multiple_choice','true_false'] %}hidden{% endif %}">
+      <h2 class="font-medium mb-2">Válaszlehetőségek</h2>
+      <div id="options-list" class="space-y-2">
+        {% for o in options %}
+        <div class="option-row flex items-center gap-2">
+          <span class="handle cursor-move select-none">☰</span>
+          <input type="text" class="border rounded w-full p-1 option-label" placeholder="Szöveg" value="{{ o.label }}" />
+          <input type="text" class="border rounded w-full p-1 option-value" placeholder="Érték" value="{{ o.value or '' }}" />
+          {% if o.id %}<input type="hidden" class="option-id" value="{{ o.id }}" />{% endif %}
+          <button type="button" class="remove-option text-red-600">×</button>
+        </div>
+        {% endfor %}
+        <div class="option-row flex items-center gap-2">
+          <span class="handle cursor-move select-none">☰</span>
+          <input type="text" class="border rounded w-full p-1 option-label" placeholder="Szöveg" />
+          <input type="text" class="border rounded w-full p-1 option-value" placeholder="Érték" />
+          <button type="button" class="remove-option text-red-600">×</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky bottom-0 bg-white border-t mt-6 py-3 flex justify-end gap-2">
+      <a href="/admin/q/{{ questionnaire_id }}/edit" class="px-4 py-2 bg-gray-200 rounded">Mégse</a>
+      <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Mentés</button>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script src="/static/js/admin_questions.js"></script>
+{% endblock %}
