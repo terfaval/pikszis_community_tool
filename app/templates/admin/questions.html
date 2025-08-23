@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-6xl mx-auto p-6">
+  <div class="flex items-center justify-between mb-4">
+    <div>
+      <h1 class="text-2xl font-semibold">Kérdések (Admin)</h1>
+      {% if qmeta %}
+        <p class="text-gray-600 mt-1">
+          <span class="font-medium">{{ qmeta.title }}</span> — {{ qmeta.description or "" }}
+        </p>
+      {% endif %}
+    </div>
+    <div>
+      <a href="/admin/q" class="underline mr-4">← Vissza</a>
+      <a href="/admin/q/{{ questionnaire_id }}/new" class="px-3 py-2 border rounded-md">Új kérdés</a>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto border rounded-lg">
+    <table class="min-w-full text-sm">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="text-left px-4 py-2">ID</th>
+          <th class="text-left px-4 py-2">Sorszám</th>
+          <th class="text-left px-4 py-2">Cím</th>
+          <th class="text-left px-4 py-2">Típus</th>
+          <th class="text-left px-4 py-2">Kötelező</th>
+          <th class="text-left px-4 py-2">Random pool</th>
+          <th class="text-left px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in questions %}
+        <tr class="border-t">
+          <td class="px-4 py-2">{{ r.id }}</td>
+          <td class="px-4 py-2">{{ r.ord }}</td>
+          <td class="px-4 py-2 font-medium">{{ r.title }}</td>
+          <td class="px-4 py-2">{{ r.qtype }}</td>
+          <td class="px-4 py-2">{{ "✓" if r.required else "—" }}</td>
+          <td class="px-4 py-2">{{ "✓" if r.in_random_pool else "—" }}</td>
+          <td class="px-4 py-2">
+            <a class="underline" href="/admin/q/{{ questionnaire_id }}/edit/{{ r.id }}">Szerk.</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td class="px-4 py-3 text-gray-500" colspan="7">Nincs kérdés.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

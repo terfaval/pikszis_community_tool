@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto p-6">
+  <h1 class="text-2xl font-semibold mb-4">Kérdőívek (Admin)</h1>
+
+  <div class="overflow-x-auto border rounded-lg">
+    <table class="min-w-full text-sm">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="text-left px-4 py-2">ID</th>
+          <th class="text-left px-4 py-2">Cím</th>
+          <th class="text-left px-4 py-2">Leírás</th>
+          <th class="text-left px-4 py-2">Aktív</th>
+          <th class="text-left px-4 py-2">Random pool</th>
+          <th class="text-left px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for q in questionnaires %}
+        <tr class="border-t">
+          <td class="px-4 py-2">{{ q.id }}</td>
+          <td class="px-4 py-2 font-medium">{{ q.title }}</td>
+          <td class="px-4 py-2 text-gray-600">{{ q.description or "" }}</td>
+          <td class="px-4 py-2">{{ "✓" if q.is_active else "—" }}</td>
+          <td class="px-4 py-2">{{ "✓" if q.in_random_pool else "—" }}</td>
+          <td class="px-4 py-2">
+            <a class="underline" href="/admin/q/{{ q.id }}">Megnyit</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td class="px-4 py-3 text-gray-500" colspan="6">Nincs kérdőív.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

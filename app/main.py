@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from app.routers import admin_questionnaires
 
 from .config import settings
 from .routers import auth, hub, questionnaire_api, random_api
@@ -34,3 +35,4 @@ app.include_router(auth.router)
 app.include_router(hub.router)
 app.include_router(random_api.router)
 app.include_router(questionnaire_api.router)
+app.include_router(admin_questionnaires.router)
