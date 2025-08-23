@@ -1,0 +1,339 @@
+id,questionnaire_id,priority,title,qtype,random_order,ord,branch_rules,random_answer,intro_text
+QDEM1_1,QDEM1,1,Hány éves vagy?,numeric,FALSE,1,{},FALSE,"A v�laszaid anonimak, a demogr�fiai adatok kiz�r�lag statisztikai bont�sban jelennek meg.
+Ez a k�rd�s lehet�v� teszi, hogy a t�bbi mutat�t �letkori csoportok szerint is vizualiz�ljuk. �gy pontosabban l�that�, mely gener�ci�k milyen ig�nyeket fogalmaznak meg."
+QDEM1_2,QDEM1,2,Mi a nemed?,single_choice,FALSE,2,"{""options"": [""nĹ‘"", ""fĂ©rfi"", ""egyĂ©b""], ""logic"": []}",FALSE,
+QDEM1_3,QDEM1,3,Hol laksz?,open_text,FALSE,3,{},FALSE,
+QDEM1_4,QDEM1,4,"Elég az is, ha meg tudod mondani, hogy milyen típusú településen élsz!",single_choice,FALSE,4,"{""options"": [""fĹ‘vĂˇros"", ""szĂ©khely"", ""vĂˇros"", ""kĂ¶zsĂ©g""], ""logic"": []}",FALSE,
+QDEM1_5,QDEM1,5,Megye,single_choice,FALSE,5,recode,FALSE,
+Q1_1,Q1,6,"Úgy érzem, hogy a körülöttem élő emberek számíthatnak rám.",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+Q1_2,Q1,7,"Úgy érzem, én is számíthatok a körülöttem élő emberekre.",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+Q1_3,Q1,8,"Része vagyok egy olyan csoportnak, amely fontos számomra.",likert_1_4,FALSE,3,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+Q1_4,Q1,9,"Könnyen találok közösségi programokat vagy eseményeket, amelyek érdekelnek.",likert_1_4,FALSE,4,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+Q1_5,Q1,10,Az emberek a közösségemben tiszteletben tartják a véleményemet.,likert_1_4,FALSE,5,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+Q1_6,Q1,11,"Úgy érzem, van közös történetünk vagy értékeink a közösségemmel.",likert_1_4,FALSE,6,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+NEED_1,NEED,12,"Mennyire érzed, hogy a környezetedben hiányoznak közösségi lehetőségek?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem érezni"", ""inkább nem érezni"",  ""erősen érezni"", ""nagyon erősen érezni""],
+  ""logic"": []
+}",FALSE,
+NEED_3,NEED,13,"Mennyire érzed, hogy vannak fel nem ismert közösségi problémák a környékeden?",likert_1_4,FALSE,3,"{
+  ""options"": [""egyáltalán nem érezni"", ""inkább nem érezni"", ""erősen érezni"", ""nagyon erősen érezni""],
+  ""logic"": []
+}",FALSE,
+NEED_4,NEED,14,Mennyire sürgősnek érzed a saját igényed kielégítését?,likert_1_4,FALSE,4,"{
+  ""options"": [""egyáltalán nem sürgős"", ""inkább nem sürgős"", ""elég sürgős"", ""nagyon sürgős""],
+  ""logic"": []
+}",FALSE,
+NEED_6,NEED,15,Milyen területen érzel hiányt vagy szükséget?,multiple_choice,FALSE,6,"{""options"": [""KĂ¶rnyezet & fenntarthatĂłsĂˇg"", ""KultĂşra & mĹ±vĂ©szet"", ""OktatĂˇs & tanulĂˇs"", ""EgĂ©szsĂ©g & sport"", ""KĂ¶zĂ¶ssĂ©gi Ă©let & esemĂ©nyek"", ""SzociĂˇlis & segĂ­tsĂ©gnyĂşjtĂˇs"", ""egyĂ©b""], ""logic"": []}",TRUE,
+NEED_7,NEED,16,"Mi akadályozott eddig abban, hogy kielégítsd ezt az igényt?”",multiple_choice,FALSE,7,"{""options"":[""IdĹ‘hiĂˇny"", ""InformĂˇciĂłhiĂˇny"", ""Anyagi korlĂˇt"", ""HozzĂˇfĂ©rĂ©s hiĂˇnya (hely/eszkoz)"", ""Kapcsolatok hiĂˇnya"", ""MotivĂˇciĂł ingadozĂˇsa"", ""AdminisztratĂ­v akadĂˇlyok"", ""EgyĂ©b""], ""logic"": []}",FALSE,
+QDEM1_6,QDEM1,17,Mi a végzettséged?,single_choice,FALSE,6,"{""options"": [""ĂˇltalĂˇnos iskola"", ""kĂ¶zĂ©piskola"", ""felsĹ‘fokĂş"", ""mĂˇs""], ""logic"": []}",FALSE,
+QDEM1_7,QDEM1,18,Mivel foglalkozol?,single_choice,FALSE,7,"{""options"": [""tanulĂł"", ""alkalmazott"", ""vĂˇllalkozĂł"", ""szabadĂşszĂł"", ""hĂˇztartĂˇsbeli"", ""munkanĂ©lkĂĽli"", ""nyugdĂ­jas"", ""egyĂ©b""], ""logic"": []}",FALSE,
+QDEM1_8,QDEM1,19,Milyen a háztartásod?,single_choice,FALSE,8,"{""options"": [""egyedĂĽl Ă©lek"", ""pĂˇrommal Ă©lek"", ""csalĂˇddal Ă©lek"", ""tĂ¶bbgenerĂˇciĂłs hĂˇztartĂˇs"", ""kĂ¶zĂ¶ssĂ©gben Ă©lek""], ""logic"": []}",FALSE,
+QDEM1_9,QDEM1,20,Mekkora háztartásban élsz?,numeric,FALSE,9,{},FALSE,
+QDEM1_10,QDEM1,21,Mi a családi állapotod?,single_choice,FALSE,10,"{""options"": [""egyedĂĽlĂˇllĂł"", ""pĂˇrkapcsolatban"", ""hĂˇzassĂˇgban"", ""elvĂˇlt"", ""Ă¶zvegy""], ""logic"": []}",FALSE,
+Q1_7,Q1,22,Milyen gyakran veszel részt helyi közösségi eseményeken?,single_choice,FALSE,7,"{""options"": [""ritkÄ‚Ë‡n"", ""havonta"", ""hetente"", ""tÄ‚Â¶bbszÄ‚Â¶r hetente""], ""logic"": []}",FALSE,
+Q1_8,Q1,23,Milyen formában szeretnél közösséghez kapcsolódni?,multiple_choice,FALSE,8,"{""options"": [""EsemĂ©nyeken valĂł rĂ©szvĂ©tel"", ""Rendszeres kĂ¶zĂ¶ssĂ©gi klub"", ""Online csoport"", ""Ă–nkĂ©ntessĂ©g"", ""SajĂˇt projekt indĂ­tĂˇsa"", ""TĂˇmogatĂˇs (pĂ©nz/eszkĂ¶z/hely/tudĂˇs)"", ""EgyĂ©b""], ""logic"": []}",FALSE,
+Q1_9,Q1,24,"Mi az első három dolog, ami eszedbe jut a „közösség” szóról?",open_text,FALSE,9,{},FALSE,
+NEED_2,NEED,25,"Mennyire van szükséged új kapcsolódási formákra (barátok, közösségi programok, tanulási körök stb.)?",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem szükséges"", ""inkább nem szükséges"", ""többnyire szükséges"", ""nagyon szükséges""],
+  ""logic"": []
+}",FALSE,
+NEED_5,NEED,26,Mennyire érint ez a probléma másokat is a környezetedben?,likert_1_4,FALSE,5,"{
+  ""options"": [""szinte senkit"", ""kevés embert"", ""közepes számú embert"", ""sok embert""],
+  ""logic"": []
+}",FALSE,
+NEED_8,NEED,27,"Milyen támogatásra lenne szükséged ahhoz, hogy ez az igény kielégüljön?",multiple_choice,FALSE,8,"{""options"": [""helyszĂ­n"", ""tĂˇrsak"", ""tudĂˇs"", ""eszkĂ¶z"", ""pĂ©nz"", ""egyĂ©b""], ""logic"": []}",FALSE,
+NEED_9,NEED,28,"Mi az a legfontosabb igény, ami miatt csatlakoznál egy közösséghez?",open_text,FALSE,9,{},FALSE,
+SCS_Trust_1,SCS_Trust,29,Általában megbízhatónak tartom az embereket a közösségemben.,likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+SCS_Trust_2,SCS_Trust,30,Az emberek itt többnyire tiszteletben tartják a szabályokat és egymást.,likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+SCS_Trust_3,SCS_Trust,31,"Bízom benne, hogy a közösség tagjai segítenek, ha szükségem van rá.",likert_1_4,FALSE,3,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+SCS_Trust_4,SCS_Trust,32,A környezetemben az emberek általában jó szándékúak.,likert_1_4,FALSE,4,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+SCS_Trust_5,SCS_Trust,33,Szívesen bíznék meg közösségi ügyekben a környékbeliekben.,likert_1_4,FALSE,5,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+SCS_Trust_6,SCS_Trust,34,"Úgy érzem, hogy a helyi közösség intézményei (pl. egyesületek, önkormányzat) megbízhatóak.",likert_1_4,FALSE,6,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,"A v�laszaid bizalmasak, �s nem k�thet�k vissza szem�lyesen hozz�d. 
+Ez a k�rd�s a K�z�ss�gi Bizalom Index r�sze, amelyet id�soros �br�kon is k�vetni fogunk. Megmutatja, mennyire stabil a k�z�ss�gi egy�ttm�k�d�s."
+LOCAL_1,LOCAL,35,"Mennyire érzed, hogy a lakóhelyeden elegendő közösségi tér áll rendelkezésre (pl. közösségi ház, park, sportpálya)?",likert_1_4,FALSE,1,"{
+  ""options"": [""nagyon kevés"", ""inkább kevés"", ""éppen elég"", ""inkább sok"", ""nagyon sok""],
+  ""logic"": []
+}",FALSE,
+LOCAL_2,LOCAL,36,Mennyire könnyű megtalálni a helyi programokról és közösségekről szóló információkat?,likert_1_4,FALSE,2,"{
+  ""options"": [""szinte lehetetlen"", ""elég nehéz"", ""meg tudom oldani"", ""inkább egyszerű"", ""nagyon egyszerű""],
+  ""logic"": []
+}",FALSE,
+LOCAL_3,LOCAL,37,Mennyire érzed szervezettnek a helyi közösségi életet?,likert_1_4,FALSE,3,"{
+  ""options"": [""teljesen szervezetlen"", ""inkább szervezetlen"", ""inkább szervezett"", ""nagyon szervezett""],
+  ""logic"": []
+}",FALSE,
+LOCAL_4,LOCAL,38,Mi akadályoz leginkább a helyi közösségi életben való részvételben?,multiple_choice,FALSE,4,"{""options"": [""nincs megfelelő helyszín"", ""nincs elég információ"", ""időhiány"", ""közlekedési nehézségek"", ""anyagi akadályok"", ""egyéb""], ""logic"": []}",TRUE,
+LOCAL_5,LOCAL,39,Mit érzel leginkább hiányzó elemnek a közösségi infrastruktúrában?,multiple_choice,FALSE,5,"{""options"": [""találkozóhelyek"", ""rendszeres programok"", ""közösségi kommunikációs csatorna"", ""támogató szolgáltatások (pl. mentorálás, források)"", ""közösségi vezetők, szervezők"", ""egyéb""], ""logic"": []}",TRUE,
+LOCAL_6,LOCAL,40,"Ha egy dolgot változtathatnál a lakóhelyed közösségi életében, mi lenne az?",open_text,FALSE,6,{},FALSE,
+CE_1,CE,,Az emberek a közösségemben törődnek egymással.,likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+CE_2,CE,,"Bízom benne, hogy a közösségem tagjai összefognak, ha probléma adódik.",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+CE_3,CE,,"A közösségemben az emberek segítenek egymásnak, ha szükség van rá.",likert_1_4,FALSE,3,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+CE_4,CE,,"Ha valami helytelen történne a környéken, a közösség összefogna, hogy megállítsa.",likert_1_4,FALSE,4,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+CE_5,CE,,A közösségemben képesek vagyunk együtt dolgozni közös célokért.,likert_1_4,FALSE,5,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+CE_6,CE,,"Úgy érzem, hogy a közösségem képes befolyásolni a jövőjét.",likert_1_4,FALSE,6,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+COMM_1,COMM,,Közösség neve,open_text,FALSE,1,{},FALSE,
+COMM_10,COMM,,"Mi az a legfontosabb érték vagy cél, ami összetartja a közösségeteket?",open_text,FALSE,10,{},FALSE,
+COMM_2,COMM,,Mutasd be röviden a közösségedet!,open_text,FALSE,2,{},FALSE,
+COMM_3,COMM,,Milyen típusú közösségetek van?,multiple_choice,FALSE,3,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+COMM_4,COMM,,Milyen területhez sorolnád a közösséget?,multiple_choice,FALSE,4,"{""options"": [""KĂ¶rnyezet & fenntarthatĂłsĂˇg"", ""KultĂşra & mĹ±vĂ©szet"", ""OktatĂˇs & tanulĂˇs"", ""EgĂ©szsĂ©g & sport"", ""KĂ¶zĂ¶ssĂ©gi Ă©let & esemĂ©nyek"", ""SzociĂˇlis & segĂ­tsĂ©gnyĂşjtĂˇs"", ""egyĂ©b""], ""follow_ups"": ""KĂ¶rnyezet & fenntarthatĂłsĂˇg"": [""COMM_4_1""], ""KultĂşra & mĹ±vĂ©szet"": [""COMM_4_2""], ""OktatĂˇs & tanulĂˇs"": [""COMM_4_3""], ""EgĂ©szsĂ©g & sport"": [""COMM_4_4""], ""KĂ¶zĂ¶ssĂ©gi Ă©let & esemĂ©nyek"": [""COMM_4_5""], ""SzociĂˇlis & segĂ­tsĂ©gnyĂşjtĂˇs"": [""COMM_4_6""]}",TRUE,
+COMM_4_1,COMM,,Milyen típusú környezeti vagy fenntarthatósági kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""kĂ¶zĂ¶ssĂ©gi kert"", ""fa�ltet�s, z�ld�t�s"", ""hullad�kcs�kkent�s / �jrahasznos�t�s"", ""szem�tszed� akci�k"", ""zero waste workshopok"", ""energiahat�konys�gi kezdem�nyez�sek"", ""term�szetv�delmi t�r�k, �koturizmus"", ""k�z�ss�gi megoszt�s (pl. eszk�zk�lcs�nz�)"", ""komposzt�l�s / �lelmiszerment�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_4_2,COMM,,Milyen típusú kulturális vagy művészeti kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""ki�ll�t�s / gal�ria"", ""k�z�s alkot�t�r"", ""Zenei esem�ny / koncert"", ""Sz�nh�z / el�ad�m�v�szet"", ""Filmklub / mozi"", ""Irodalmi est / k�nyvklub"", ""Fesztiv�l / nagyobb k�z�ss�gi program"", ""Hagyom�ny�rz� programok"", ""Kreat�v workshop"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_4_3,COMM,,Milyen típusú oktatási vagy tanulási kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""Mentor�l�s (szakmai, �letvezet�si)"", ""Tanul�k�r / szakk�r"", ""Nyelvtanul�s"", ""Digit�lis k�szs�gek fejleszt�se"", ""Workshop / tr�ning"", ""Online kurzus"", ""Tudom�nyos el�ad�s / meet-up"", ""K�z�ss�gi k�nyvt�r / tud�smegoszt�s"", ""Ifj�s�gi oktat�si programok"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_4_4,COMM,,Milyen típusú egészséghez vagy sporthoz kapcsolódó program vagy közösség érdekelne leginkább?,multiple_choice,FALSE,3,"{""options"": [""J�ga"", ""Fut�s"", ""Ker�kp�r / t�r�z�s"", ""Csapatsport"", ""Eg�szs�ges �letm�d workshop"", ""Ment�lis eg�szs�g / lelki t�mogat�s"", ""Relax�ci�, medit�ci�"", ""Fitnesz / er�s�t� edz�s"", ""T�nc"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_4_5,COMM,,Milyen típusú közösségi eseményeken vennél részt legszívesebben?,multiple_choice,FALSE,3,"{""options"": [""K�z�s f�z�s / gasztro esem�ny"", ""Helyi fesztiv�l / v�s�r"", ""Klubtal�lkoz� (hobbik szerint)"", ""Szomsz�ds�gi �sszej�vetel"", ""J�t�kest / t�rsasj�t�k klub"", ""K�z�s kir�ndul�s, t�ra"", ""�nnepi program"", ""Online k�z�ss�gi esem�ny"", ""T�nch�z / b�l"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_4_6,COMM,,Milyen formában vennél részt szociális vagy segítségnyújtó programban?,multiple_choice,FALSE,3,"{""options"": [""�nk�ntess�g"", ""Adom�nygy�jt�s (p�nz / t�rgy)"", ""Id�sgondoz�s"", ""Gyermekek t�mogat�sa"", ""Hajl�ktalan-seg�t�s"", ""�lelmiszeroszt�s / k�z�ss�gi konyha"", ""Kr�zisseg�t�s"", ""Szakmai tud�s megoszt�sa"", ""Lelki t�mogat�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+COMM_5,COMM,,Hol működik a közösség?,multiple_choice,FALSE,5,"{""options"": [""konkrĂ©t telepĂĽlĂ©s"", ""jĂˇrĂˇs/vĂˇrmegye"", ""orszĂˇgos"", ""online"", ""nincs preferencia""], ""logic"": []}",FALSE,
+COMM_6,COMM,,Hány aktív tagja van a közösségnek?,single_choice,FALSE,6,"{""options"": [""1-10 fĹ‘"", ""11-25 fĹ‘"", ""26-50 fĹ‘"", ""51-100 fĹ‘"", ""tĂ¶bb mint 100 fĹ‘""], ""logic"": []}",FALSE,
+COMM_7,COMM,,Milyen típusú aktivitásokat szoktatok szervezni?,multiple_choice,FALSE,7,"{""options"": [""rendszeres talĂˇlkozĂłk"", ""alkalmi esemĂ©nyek"", ""folyamatos mĹ±kĂ¶dĂ©s"", ""online aktivitĂˇs"",  ""projekt alapĂş"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+COMM_8,COMM,,"Mi az, amin keresztül tudtok másokhoz kapcsolódni?",multiple_choice,FALSE,8,"{""options"": [""helyszĂ­n"", ""tudĂˇs"", ""eszkĂ¶zĂ¶k"", ""kapcsolati hĂˇlĂł"",  ""tapasztalat"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+COMM_9,COMM,,"Mi az, amiben nektek lenne szükségetek támogatásra?",multiple_choice,FALSE,9,"{""options"": [""tĂˇrsak"", ""erĹ‘forrĂˇs"", ""eszkĂ¶zĂ¶k"", ""kommunikĂˇciĂł"",  ""anyagi tĂˇmogatĂˇs"", ""mentorĂˇlĂˇs"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+IDEA_1,IDEA,,Ötlet címe,open_text,FALSE,1,{},FALSE,
+IDEA_10,IDEA,,Mennyire áll készen az ötlet a megvalósításra?,likert_1_5,FALSE,16,"{
+  ""options"": [""csak ötlet"", ""beszélgetés alatt"", ""próbálkozások voltak"", ""részben működik"", ""működő kezdeményezés""],
+  ""logic"": []
+}",FALSE,
+IDEA_11,IDEA,,Mi valósult meg eddig az ötletből?,multiple_choice,FALSE,17,"{""options"": [""csak Ă¶tlet szinten van"", ""mĂˇr van Ă©rdeklĹ‘dĹ‘ kĂ¶zĂ¶ssĂ©g"", ""mĂˇr az elsĹ‘ prĂłbĂˇlkozĂˇsok is meg voltak"", ""rendszeresen mĹ±kĂ¶dik""], ""logic"": []}",FALSE,
+IDEA_2,IDEA,,Miről szólna a projekt?,open_text,FALSE,2,{},FALSE,
+IDEA_3,IDEA,,Milyen típusú ötleted van?,multiple_choice,FALSE,3,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+IDEA_4,IDEA,,Milyen területhez sorolnád az ötleted?,multiple_choice,FALSE,4,"{""options"": [""KĂ¶rnyezet & fenntarthatĂłsĂˇg"", ""KultĂşra & mĹ±vĂ©szet"", ""OktatĂˇs & tanulĂˇs"", ""EgĂ©szsĂ©g & sport"", ""KĂ¶zĂ¶ssĂ©gi Ă©let & esemĂ©nyek"", ""SzociĂˇlis & segĂ­tsĂ©gnyĂşjtĂˇs"", ""egyĂ©b""], ""follow_ups"": ""KĂ¶rnyezet & fenntarthatĂłsĂˇg"": [""IDEA_4_1""], ""KultĂşra & mĹ±vĂ©szet"": [""IDEA_4_2""], ""OktatĂˇs & tanulĂˇs"": [""IDEA_4_3""], ""EgĂ©szsĂ©g & sport"": [""IDEA_4_4""], ""KĂ¶zĂ¶ssĂ©gi Ă©let & esemĂ©nyek"": [""IDEA_4_5""], ""SzociĂˇlis & segĂ­tsĂ©gnyĂşjtĂˇs"": [""IDEA_4_6""]}",TRUE,
+IDEA_4_1,IDEA,,Milyen típusú környezeti vagy fenntarthatósági �tletr�l lenne sz�?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©gi kert"", ""fa�ltet�s, z�ld�t�s"", ""hullad�kcs�kkent�s / �jrahasznos�t�s"", ""szem�tszed� akci�k"", ""zero waste workshopok"", ""energiahat�konys�gi kezdem�nyez�sek"", ""term�szetv�delmi t�r�k, �koturizmus"", ""k�z�ss�gi megoszt�s (pl. eszk�zk�lcs�nz�)"", ""komposzt�l�s / �lelmiszerment�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_4_2,IDEA,,Milyen típusú kulturális vagy művészeti �tletr�l lenne sz�?,multiple_choice,FALSE,6,"{""options"": [""ki�ll�t�s / gal�ria"", ""k�z�s alkot�t�r"", ""Zenei esem�ny / koncert"", ""Sz�nh�z / el�ad�m�v�szet"", ""Filmklub / mozi"", ""Irodalmi est / k�nyvklub"", ""Fesztiv�l / nagyobb k�z�ss�gi program"", ""Hagyom�ny�rz� programok"", ""Kreat�v workshop"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_4_3,IDEA,,Milyen típusú oktatási vagy tanulási �tletr�l lenne sz�?,multiple_choice,FALSE,7,"{""options"": [""Mentor�l�s (szakmai, �letvezet�si)"", ""Tanul�k�r / szakk�r"", ""Nyelvtanul�s"", ""Digit�lis k�szs�gek fejleszt�se"", ""Workshop / tr�ning"", ""Online kurzus"", ""Tudom�nyos el�ad�s / meet-up"", ""K�z�ss�gi k�nyvt�r / tud�smegoszt�s"", ""Ifj�s�gi oktat�si programok"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_4_4,IDEA,,Milyen típusú egészséghez vagy sporthoz �tletr�l lenne sz�?,multiple_choice,FALSE,8,"{""options"": [""J�ga"", ""Fut�s"", ""Ker�kp�r / t�r�z�s"", ""Csapatsport"", ""Eg�szs�ges �letm�d workshop"", ""Ment�lis eg�szs�g / lelki t�mogat�s"", ""Relax�ci�, medit�ci�"", ""Fitnesz / er�s�t� edz�s"", ""T�nc"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_4_5,IDEA,,Milyen típusú közösségi �tletr�l lenne sz�?,multiple_choice,FALSE,9,"{""options"": [""K�z�s f�z�s / gasztro esem�ny"", ""Helyi fesztiv�l / v�s�r"", ""Klubtal�lkoz� (hobbik szerint)"", ""Szomsz�ds�gi �sszej�vetel"", ""J�t�kest / t�rsasj�t�k klub"", ""K�z�s kir�ndul�s, t�ra"", ""�nnepi program"", ""Online k�z�ss�gi esem�ny"", ""T�nch�z / b�l"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_4_6,IDEA,,Milyen form�j� szociális vagy segítségnyújtó program�tletr�l lenne sz�?,multiple_choice,FALSE,10,"{""options"": [""�nk�ntess�g"", ""Adom�nygy�jt�s (p�nz / t�rgy)"", ""Id�sgondoz�s"", ""Gyermekek t�mogat�sa"", ""Hajl�ktalan-seg�t�s"", ""�lelmiszeroszt�s / k�z�ss�gi konyha"", ""Kr�zisseg�t�s"", ""Szakmai tud�s megoszt�sa"", ""Lelki t�mogat�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+IDEA_5,IDEA,,Hol valósítanád meg?,multiple_choice,FALSE,11,"{""options"": [""konkrĂ©t telepĂĽlĂ©s"", ""jĂˇrĂˇs/vĂˇrmegye"", ""orszĂˇgos"", ""online"", ""nincs preferencia""], ""logic"": []}",FALSE,
+IDEA_6,IDEA,,Mi a kapcsolódási szándéka?,multiple_choice,FALSE,12,"{""options"": [""szervezĹ‘ket keresek"", ""rĂ©sztvevĹ‘ket keresek"", ""tĂˇmogatĂłkat keresek"" ], ""logic"": []}",FALSE,
+IDEA_7,IDEA,,Mekkora hatással lenne a közösségre az ötlet megvalósulása?,likert_1_4,FALSE,13,"{
+  ""options"": [""semmilyen hatás"", ""kis hatás"", ""közepes hatás"", ""jelentős hatás""],
+  ""logic"": []
+}",FALSE,
+IDEA_8,IDEA,,Kiket érintene leginkább az ötleted?,multiple_choice,FALSE,14,"{""options"": [""helyi lakosokat"", ""fiatalokat"", ""idĹ‘seket"", ""csalĂˇdokat"", ""egyĂ©b"" ], ""logic"": []}",FALSE,
+IDEA_9,IDEA,,Milyen erőforrások állnak most a rendelkezésedre?,multiple_choice,FALSE,15,"{""options"": [""tĂˇrsak"", ""helyszĂ­n"", ""tudĂˇs"", ""eszkĂ¶z"", ""pĂ©nzĂĽgyi forrĂˇs"", ""mĂ©g semmi"", ""egyĂ©b"" ], ""logic"": []}",FALSE,
+QENV_1,QENV,,"Mennyire fontos számodra, hogy legyenek közösségi környezetvédelmi vagy fenntarthatósági programok?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QENV_2,QENV,,"Mennyire hiányoznak a környezetedben a fenntarthatósági lehetőségek (pl. közösségi kert, hulladékcsökkentés)?",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QENV_3,QENV,,Milyen típusú környezeti vagy fenntarthatósági kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""kĂ¶zĂ¶ssĂ©gi kert"", ""fa�ltet�s, z�ld�t�s"", ""hullad�kcs�kkent�s / �jrahasznos�t�s"", ""szem�tszed� akci�k"", ""zero waste workshopok"", ""energiahat�konys�gi kezdem�nyez�sek"", ""term�szetv�delmi t�r�k, �koturizmus"", ""k�z�ss�gi megoszt�s (pl. eszk�zk�lcs�nz�)"", ""komposzt�l�s / �lelmiszerment�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QENV_4,QENV,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QENV_5,QENV,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QENV_6,QENV,,"Ha egyetlen környezeti vagy fenntarthatósági közösségi kezdeményezést indíthatnál, mi lenne az?",open_text,FALSE,6,{},FALSE,
+QCUL_1,QCUL,,"Mennyire fontos számodra, hogy a közösségedben legyenek kulturális programok és művészeti lehetőségek?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QCUL_2,QCUL,,"Mennyire hiányoznak a környezetedben a kulturális alkalmak (pl. kiállítás, koncert, közös alkotótér)?",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QCUL_3,QCUL,,Milyen típusú kulturális vagy művészeti kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""ki�ll�t�s / gal�ria"", ""k�z�s alkot�t�r"", ""Zenei esem�ny / koncert"", ""Sz�nh�z / el�ad�m�v�szet"", ""Filmklub / mozi"", ""Irodalmi est / k�nyvklub"", ""Fesztiv�l / nagyobb k�z�ss�gi program"", ""Hagyom�ny�rz� programok"", ""Kreat�v workshop"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QCUL_4,QCUL,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QCUL_5,QCUL,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QCUL_6,QCUL,,"Ha egyetlen kulturális vagy művészeti közösségi kezdeményezést indíthatnál, mi lenne az?",open_text,FALSE,6,{},FALSE,
+QEDU_1,QEDU,,"Mennyire fontos számodra, hogy legyenek közösségi tanulási lehetőségek a környezetedben?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QEDU_2,QEDU,,"Mennyire hiányoznak a környezetedben a tanulási és tudásmegosztási alkalmak (pl. tanulókör, workshop, mentorálás)?",likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QEDU_3,QEDU,,Milyen típusú oktatási vagy tanulási kezdeményezések érdekelnének leginkább?,multiple_choice,FALSE,3,"{""options"": [""Mentor�l�s (szakmai, �letvezet�si)"", ""Tanul�k�r / szakk�r"", ""Nyelvtanul�s"", ""Digit�lis k�szs�gek fejleszt�se"", ""Workshop / tr�ning"", ""Online kurzus"", ""Tudom�nyos el�ad�s / meet-up"", ""K�z�ss�gi k�nyvt�r / tud�smegoszt�s"", ""Ifj�s�gi oktat�si programok"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QEDU_4,QEDU,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QEDU_5,QEDU,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QEDU_6,QEDU,,"Ha egyetlen közösségi tanulási vagy oktatási kezdeményezést indíthatnál, mi lenne az?",open_text,FALSE,6,{},FALSE,
+QHEA_1,QHEA,,Mennyire fontosak számodra a közösségi egészség- és sportprogramok?,likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QHEA_2,QHEA,,Mennyire hiányoznak ezek a lehetőségek a környezetedben?,likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QHEA_3,QHEA,,Milyen típusú egészséghez vagy sporthoz kapcsolódó program vagy közösség érdekelne leginkább?,multiple_choice,FALSE,3,"{""options"": [""J�ga"", ""Fut�s"", ""Ker�kp�r / t�r�z�s"", ""Csapatsport"", ""Eg�szs�ges �letm�d workshop"", ""Ment�lis eg�szs�g / lelki t�mogat�s"", ""Relax�ci�, medit�ci�"", ""Fitnesz / er�s�t� edz�s"", ""T�nc"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QHEA_4,QHEA,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b"" ], ""logic"": []}",FALSE,
+QHEA_5,QHEA,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QHEA_6,QHEA,,"Ha egyetlen közösségi egészség- vagy sportkezdeményezést indíthatnál, mi lenne az?",open_text,FALSE,6,{},FALSE,
+QCOM_1,QCOM,,"Mennyire fontos számodra, hogy legyenek helyi közösségi események (pl. közös főzés, találkozók, klubok)?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QCOM_2,QCOM,,Mennyire hiányoznak a környezetedben ezek a közösségi alkalmak?,likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QCOM_3,QCOM,,Milyen típusú közösségi eseményeken vennél részt legszívesebben?,multiple_choice,FALSE,3,"{""options"": [""K�z�s f�z�s / gasztro esem�ny"", ""Helyi fesztiv�l / v�s�r"", ""Klubtal�lkoz� (hobbik szerint)"", ""Szomsz�ds�gi �sszej�vetel"", ""J�t�kest / t�rsasj�t�k klub"", ""K�z�s kir�ndul�s, t�ra"", ""�nnepi program"", ""Online k�z�ss�gi esem�ny"", ""T�nch�z / b�l"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QCOM_4,QCOM,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QCOM_5,QCOM,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QCOM_6,QCOM,,"Ha egyetlen közösségi eseményt indíthatnál a környezetedben, mi lenne az?",open_text,FALSE,6,{},FALSE,
+QSOC_1,QSOC,,"Mennyire fontos számodra, hogy a közösségedben legyenek segítségnyújtási lehetőségek (pl. idősgondozás, adományozás)?",likert_1_4,FALSE,1,"{
+  ""options"": [""egyáltalán nem fontos"", ""kevéssé fontos"", ""fontos"", ""nagyon fontos""],
+  ""logic"": []
+}",FALSE,
+QSOC_2,QSOC,,Mennyire hiányoznak a környezetedben az ilyen szociális kezdeményezések?,likert_1_4,FALSE,2,"{
+  ""options"": [""egyáltalán nem hiányzik"", ""inkább nem hiányzik"", ""elég erősen hiányzik"", ""nagyon erősen hiányzik""],
+  ""logic"": []
+}",FALSE,
+QSOC_3,QSOC,,Milyen formában vennél részt szociális vagy segítségnyújtó programban?,multiple_choice,FALSE,3,"{""options"": [""�nk�ntess�g"", ""Adom�nygy�jt�s (p�nz / t�rgy)"", ""Id�sgondoz�s"", ""Gyermekek t�mogat�sa"", ""Hajl�ktalan-seg�t�s"", ""�lelmiszeroszt�s / k�z�ss�gi konyha"", ""Kr�zisseg�t�s"", ""Szakmai tud�s megoszt�sa"", ""Lelki t�mogat�s"", ""egyĂ©b""], ""logic"": []}",TRUE,
+QSOC_4,QSOC,,Milyen formában szeretnél ehhez a területhez csatlakozni?,multiple_choice,FALSE,4,"{""options"": [""rĂ©sztvevĹ‘"", ""szervezĹ‘"", ""tĂˇmogatĂł"", ""Ă©rdeklĹ‘dĹ‘"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QSOC_5,QSOC,,Milyen típusú kezdeményezéseket szeretnél ezen a területen elérni?,multiple_choice,FALSE,5,"{""options"": [""kĂ¶zĂ¶ssĂ©g"", ""esemĂ©ny"", ""szolgĂˇltatĂˇs"", ""projekt"",  ""egyĂ©b""], ""logic"": []}",FALSE,
+QSOC_6,QSOC,,"Ha egyetlen szociális vagy segítségnyújtó kezdeményezést indíthatnál a környezetedben, mi lenne az?",open_text,FALSE,6,{},FALSE,
+SCI_1,SCI,,"Úgy érzem, hogy tartozom a közösségemhez",likert_1_4,TRUE,1,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_10,SCI,,"Hatással tudok lenni arra, hogyan alakul a közösség jövője",likert_1_4,TRUE,10,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_11,SCI,,"A közösség hatással van rám, fontos számomra a visszajelzésük",likert_1_4,TRUE,11,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_12,SCI,,"Úgy érzem, hogy tiszteletben tartják a véleményemet",likert_1_4,TRUE,12,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_13,SCI,,A közösségem kielégíti a szükségleteimet (pl,likert_1_4,TRUE,13,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_14,SCI,,"Olyan emberekkel találkozom itt, akik hasonló érdeklődésűek",likert_1_4,TRUE,14,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_15,SCI,,"A közösségben erőforrásokhoz (tudás, lehetőségek) férek hozzá",likert_1_4,TRUE,15,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_16,SCI,,"Ha segítségre van szükségem, a közösségem tagjaihoz fordulhatok",likert_1_4,TRUE,16,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_17,SCI,,Értékes kapcsolatokra tettem szert a közösség által,likert_1_4,TRUE,17,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_18,SCI,,Más közösségekkel szemben ezt választanám,likert_1_4,TRUE,18,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_19,SCI,,Sok közös élményem van a közösségem tagjaival,likert_1_4,TRUE,19,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_2,SCI,,"Az emberek a közösségemben elfogadnak olyannak, amilyen vagyok",likert_1_4,TRUE,2,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_20,SCI,,"Kapcsolataim itt mélyebbek, mint más helyeken",likert_1_4,TRUE,20,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_21,SCI,,"Van közös történetünk, amit továbbadunk egymásnak",likert_1_4,TRUE,21,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_22,SCI,,"Úgy érzem, hogy ha elmesélek valamit, a közösség megérti",likert_1_4,TRUE,22,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_23,SCI,,A közösségben fontos eseményeket élünk át együtt,likert_1_4,TRUE,23,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_24,SCI,,A közösséghez tartozás érzelmi erőt ad nekem,likert_1_4,TRUE,24,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_3,SCI,,"Úgy érzem, biztonságban vagyok ebben a közösségben",likert_1_4,TRUE,3,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_4,SCI,,Része vagyok a közösségünk történetének,likert_1_4,TRUE,4,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_5,SCI,,"Jó érzés számomra, hogy ehhez a közösséghez tartozom",likert_1_4,TRUE,5,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_6,SCI,,A közösségem tagjai fontosnak tartják a hozzájárulásomat,likert_1_4,TRUE,6,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_7,SCI,,"Úgy érzem, hogy van beleszólásom a közösség dolgába",likert_1_4,TRUE,7,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_8,SCI,,"Mások is elfogadják, ha kezdeményezek valamit",likert_1_4,TRUE,8,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,
+SCI_9,SCI,,"Az én véleményem számít, amikor döntéseket hoz a közösség",likert_1_4,TRUE,9,"{
+  ""options"": [""egyáltalán nem igaz"", ""inkább nem igaz"", ""többnyire igaz"", ""teljesen igaz""],
+  ""logic"": []
+}",FALSE,

@@ -1,0 +1,16 @@
+﻿id,title,version,is_minor_allowed,requires_guardian_permission_level,mode,question_count,estimated_duration_minutes,intro_text,is_active
+Q1,Közösségi kapcsolódás,1.0.0,TRUE,general,pool,9,4,"Most a közösségi kapcsolataidról kérdezünk: mennyire érzed, hogy számíthatsz másokra, és ők is rád. Ez segít megérteni a kölcsönös támogatás erősségét.",TRUE
+SCI,Közösség érzete index,1.0.0,TRUE,general,targeted,24,10,"Az SCI a közösséghez tartozás érzetét mérő nemzetközi skála. A kérdések azt vizsgálják, mennyire érzed magad tagjának a közösségednek, tudsz‑e hatást gyakorolni rá, a közösség milyen hatással van rád, és mennyire kötődsz érzelmileg. A kitöltés kicsit hosszabb, de az eredményeket a közösség fejlesztésének megtervezéséhez használjuk fel.",TRUE
+CE,Közös hatékonyság,1.0.0,TRUE,general,community,6,2,"Itt azt mérjük, mennyire képes összefogni a közösség, ha probléma merül fel.",TRUE
+SCS_Trust,Társadalmi tőke: Bizalom,1.0.0,TRUE,general,pool,6,2,"Most arról kérdezünk, mennyire bízol a közösséged tagjaiban, és mennyire tartják tiszteletben egymást az emberek.",TRUE
+NEED,Közösségi igények,1.0.0,TRUE,general,pool,9,4,"Következőként azt vizsgáljuk, milyen közösségi lehetőségeket hiányolsz, és mely problémákat tartod sürgősnek.",TRUE
+IDEA,Új ötlet,1.0.0,TRUE,general,idea,11,5,"Oszd meg velünk a közösségi ötletedet! Írd le, hol tart a megvalósítás, és mire lenne szükség a továbbfejlesztéséhez.",TRUE
+COMM,Új közösség,1.0.0,TRUE,general,community,10,4,"Mutasd be a közösségedet! Mesélj az értékeitekről, céljaitokról és mindarról, ami összetart benneteket.",TRUE
+QHEA,Egészség & sport,1.0.0,FALSE,sensitive,targeted,6,2,Ebben a kérdőívben az egészséghez és sporthoz kapcsolódó közösségi programok fontosságát mérjük fel.,TRUE
+QENV,Környezet & fenntarthatóság,1.0.0,TRUE,general,targeted,6,2,Ez a kérdőív a környezeti és fenntarthatósági kezdeményezések iránti igényekről szól.,TRUE
+QCUL,Kultúra & művészet,1.0.0,TRUE,general,targeted,6,2,A kulturális és művészeti lehetőségek fontosságát és hiányát vizsgáljuk ezzel a kérdőívvel.,TRUE
+QEDU,Oktatás & tanulás,1.0.0,TRUE,general,targeted,6,2,Ebben a kérdőívben a közösségi tanulási és tudásmegosztási alkalmakról kérdezünk.,TRUE
+QCOM,Közösségi élet & események,1.0.0,TRUE,general,targeted,6,2,"A közösségi programok, találkozások és események iránti igényeket mérjük fel.",TRUE
+QSOC,Szociális & segítségnyújtás,1.0.0,TRUE,sensitive,targeted,6,2,Ez a kérdőív a szociális támogatás és segítségnyújtás lehetőségeit térképezi fel.,TRUE
+QDEM1,Demográfiai kérdések,1.0.0,TRUE,general,pool,10,3,"Most lenne pár kérdésünk, amelyeknek a segítségével jobban el tudjuk majd helyezni a véleményedet és igényeidet.",TRUE
+LOCAL,Helyi közösségi struktúra és infrastruktúra,1.0.0,TRUE,general,pool,6,2,"Most a lakóhelyed közösségi tereiről, programjairól és szervezettségéről szeretnénk kérdezni.",TRUE
