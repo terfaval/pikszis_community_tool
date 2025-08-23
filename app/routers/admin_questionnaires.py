@@ -9,6 +9,7 @@ from app.db.questionnaires import (
     get_questionnaire,
     upsert_questionnaire,
 )
+from app.deps import get_current_user
 from app.db.questions import (
     list_questions,
     get_question,
@@ -19,10 +20,10 @@ from app.db.questions import (
     reorder_question_options,
 )
 
-def require_user(request: Request):
-    if not getattr(request.state, "user", None):
+def require_admin(user=Depends(get_current_user)):
+    if not user.get("is_admin"):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
-    return request.state.user
+    return user
 
 
 router = APIRouter(prefix="/admin/q", tags=["admin-questionnaires"])
@@ -41,7 +42,7 @@ def normalize_length_minutes(value: Optional[str]) -> Optional[int]:
 
 
 @router.get("")
-def admin_q_index(request: Request, user=Depends(require_user)):
+def admin_q_index(request: Request, user=Depends(require_admin)):
     qs = list_questionnaires(active_only=False)
     return templates.TemplateResponse(
         "admin/questionnaires.html",
@@ -50,7 +51,7 @@ def admin_q_index(request: Request, user=Depends(require_user)):
 
 
 @router.get("/new")
-def admin_q_new(request: Request, user=Depends(require_user)):
+def admin_q_new(request: Request, user=Depends(require_admin)):
     return templates.TemplateResponse(
         "admin/questionnaire_form.html",
         {"request": request, "user": user, "q": {}},
@@ -58,7 +59,7 @@ def admin_q_new(request: Request, user=Depends(require_user)):
 
 
 @router.get("/{questionnaire_id}/edit")
-def admin_q_edit(questionnaire_id: str, request: Request, user=Depends(require_user)):
+def admin_q_edit(questionnaire_id: str, request: Request, user=Depends(require_admin)):
     q = get_questionnaire(questionnaire_id)
     if not q:
         raise HTTPException(status_code=404, detail="Questionnaire not found")
@@ -78,7 +79,7 @@ def admin_q_upsert_header(
     length_minutes: Optional[str] = Form(default=None),
     is_active: bool = Form(default=False),
     in_random_pool: bool = Form(default=False),
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     payload = {
         "id": questionnaire_id,
@@ -98,14 +99,14 @@ def admin_q_upsert_header(
 def admin_q_reorder(
     questionnaire_id: str,
     ordered_ids: List[int] = Body(...),
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     reorder_questions(questionnaire_id, ordered_ids)
     return {"success": True}
 
 
 @router.get("/{questionnaire_id}/new")
-def admin_question_new(questionnaire_id: str, request: Request, user=Depends(require_user)):
+def admin_question_new(questionnaire_id: str, request: Request, user=Depends(require_admin)):
     q = {"questionnaire_id": questionnaire_id}
     return templates.TemplateResponse(
         "admin/question_form.html",
@@ -124,7 +125,7 @@ def admin_question_edit(
     questionnaire_id: str,
     question_id: int,
     request: Request,
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     q = get_question(question_id)
     if not q or str(q.get("questionnaire_id")) != str(questionnaire_id):
@@ -162,7 +163,7 @@ def admin_question_upsert(
     in_random_pool: bool = Form(default=False),
     option_label: List[str] = Form(default=[]),
     option_value: List[str] = Form(default=[]),
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     if qtype.startswith("likert") and not likert_variant:
         raise HTTPException(status_code=400, detail="likert_variant required")
@@ -199,7 +200,7 @@ def admin_question_upsert(
 def admin_options_reorder(
     question_id: int,
     ordered_ids: List[int] = Body(...),
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     reorder_question_options(question_id, ordered_ids)
     return {"success": True}
@@ -212,7 +213,7 @@ def admin_q_upsert(
     title: str = Form(...),
     length_minutes: Optional[str] = Form(default=None),
     is_active: bool = Form(default=False),
-    user=Depends(require_user),
+    user=Depends(require_admin),
 ):
     payload = {
         "title": title,

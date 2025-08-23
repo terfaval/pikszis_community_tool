@@ -35,4 +35,5 @@ async def get_current_user(request: Request):
         "id": user["id"],
         "email": user["email"],
         "display_name": user["display_name"],
+        "is_admin": user.get("is_admin", False),
     }
