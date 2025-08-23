@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto p-6 space-y-8">
+  <div>
+    <h2 class="text-xl font-semibold mb-4">Kérdőív adatai</h2>
+    <form method="post" action="/admin/q/{{ q.id }}/upsert_header" onsubmit="return confirm('Biztosan mented a változtatásokat?');" class="space-y-4">
+      <div>
+        <label class="block mb-1 font-medium" for="title">Cím</label>
+        <input type="text" id="title" name="title" value="{{ q.title or '' }}" class="border rounded w-full p-2" required />
+      </div>
+      <div>
+        <label class="block mb-1 font-medium" for="description">Leírás</label>
+        <textarea id="description" name="description" class="border rounded w-full p-2">{{ q.description or '' }}</textarea>
+      </div>
+      <div>
+        <label class="block mb-1 font-medium" for="length_minutes">Hosszúság (perc)</label>
+        <input type="number" id="length_minutes" name="length_minutes" value="{{ q.length_minutes or '' }}" class="border rounded w-full p-2" />
+      </div>
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="is_active" name="is_active" class="h-4 w-4" {% if q.is_active %}checked{% endif %} />
+        <label for="is_active">Aktív</label>
+      </div>
+      <div class="flex items-center space-x-2">
+        <input type="checkbox" id="in_random_pool" name="in_random_pool" class="h-4 w-4" {% if q.in_random_pool %}checked{% endif %} />
+        <label for="in_random_pool">Random pool</label>
+      </div>
+      <div class="flex justify-end space-x-2 pt-4">
+        <a href="/admin/q" class="px-4 py-2 bg-gray-200 rounded">Vissza</a>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">Mentés</button>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <h2 class="text-xl font-semibold mb-4">Kérdések</h2>
+    <div id="reorder-toast" class="hidden mb-2 text-green-700">Sorrend frissítve</div>
+    <div class="overflow-x-auto border rounded-lg">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="text-left px-4 py-2">ID</th>
+            <th class="text-left px-4 py-2">Név</th>
+            <th class="text-left px-4 py-2">Prioritás</th>
+            <th class="text-left px-4 py-2">Típus</th>
+            <th class="text-left px-4 py-2">Szerk.</th>
+          </tr>
+        </thead>
+        <tbody id="questions-body">
+          {% for r in questions %}
+          <tr data-id="{{ r.id }}" class="border-t hover:bg-gray-50 cursor-move">
+            <td class="px-4 py-2">{{ r.id }}</td>
+            <td class="px-4 py-2 font-medium">{{ r.title }}</td>
+            <td class="px-4 py-2">{{ r.priority if r.priority is not none else r.ord }}</td>
+            <td class="px-4 py-2">{{ r.qtype }}</td>
+            <td class="px-4 py-2">
+              <a class="underline" href="/admin/q/{{ q.id }}/edit/{{ r.id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4h-4a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </a>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td class="px-4 py-3 text-gray-500" colspan="5">Nincs kérdés.</td></tr>
+          {% endfor %}
+          <tr class="border-t hover:bg-gray-50">
+            <td colspan="5" class="px-4 py-3 text-center italic text-blue-700 hover:text-blue-900">
+              <a href="/admin/q/{{ q.id }}/new" class="inline-flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                <span>Új kérdés hozzáadása</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script>
+var el = document.getElementById('questions-body');
+if (el) {
+  Sortable.create(el, {
+    animation: 150,
+    onEnd: function(evt) {
+      const ids = Array.from(el.querySelectorAll('tr[data-id]')).map(tr => parseInt(tr.dataset.id));
+      fetch('/admin/q/{{ q.id }}/reorder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(ids)
+      }).then(r => r.json()).then(data => {
+        var toast = document.getElementById('reorder-toast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          setTimeout(function(){ toast.classList.add('hidden'); }, 2000);
+        }
+      });
+    }
+  });
+}
+</script>
+{% endblock %}

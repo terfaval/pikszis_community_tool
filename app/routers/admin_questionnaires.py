@@ -1,15 +1,15 @@
-from fastapi import APIRouter, Request, Depends, Form, HTTPException
+from fastapi import APIRouter, Request, Depends, Form, HTTPException, Body
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette import status
-from typing import Optional
+from typing import Optional, List
 
 from app.db.questionnaires import (
     list_questionnaires,
     get_questionnaire,
     upsert_questionnaire,
 )
-from app.db.questions import list_questions
+from app.db.questions import list_questions, reorder_questions
 
 
 def require_user(request: Request):
@@ -55,10 +55,46 @@ def admin_q_edit(questionnaire_id: str, request: Request, user=Depends(require_u
     q = get_questionnaire(questionnaire_id)
     if not q:
         raise HTTPException(status_code=404, detail="Questionnaire not found")
+    questions = list_questions(questionnaire_id)
     return templates.TemplateResponse(
-        "admin/questionnaire_form.html",
-        {"request": request, "user": user, "q": q},
+        "admin/questionnaire_edit.html",
+        {"request": request, "user": user, "q": q, "questions": questions},
     )
+
+
+@router.post("/{questionnaire_id}/upsert_header")
+def admin_q_upsert_header(
+    questionnaire_id: str,
+    request: Request,
+    title: str = Form(...),
+    description: Optional[str] = Form(default=None),
+    length_minutes: Optional[str] = Form(default=None),
+    is_active: bool = Form(default=False),
+    in_random_pool: bool = Form(default=False),
+    user=Depends(require_user),
+):
+    payload = {
+        "id": questionnaire_id,
+        "title": title,
+        "description": description,
+        "estimated_duration_minutes": normalize_length_minutes(length_minutes),
+        "is_active": is_active,
+        "in_random_pool": in_random_pool,
+    }
+    upsert_questionnaire(payload)
+    return RedirectResponse(
+        f"/admin/q/{questionnaire_id}/edit", status_code=status.HTTP_303_SEE_OTHER
+    )
+
+
+@router.post("/{questionnaire_id}/reorder")
+def admin_q_reorder(
+    questionnaire_id: str,
+    ordered_ids: List[int] = Body(...),
+    user=Depends(require_user),
+):
+    reorder_questions(questionnaire_id, ordered_ids)
+    return {"success": True}
 
 
 @router.post("/upsert")
@@ -82,20 +118,7 @@ def admin_q_upsert(
 
 
 @router.get("/{questionnaire_id}")
-def admin_q_detail(questionnaire_id: str, request: Request, user=Depends(require_user)):
-    questions = list_questions(questionnaire_id)
-    qmeta = None
-    for item in list_questionnaires():
-        if item["id"] == questionnaire_id:
-            qmeta = item
-            break
-    return templates.TemplateResponse(
-        "admin/questions.html",
-        {
-            "request": request,
-            "user": user,
-            "questionnaire_id": questionnaire_id,
-            "qmeta": qmeta,
-            "questions": questions,
-        },
+def admin_q_detail(questionnaire_id: str):
+    return RedirectResponse(
+        f"/admin/q/{questionnaire_id}/edit", status_code=status.HTTP_303_SEE_OTHER
     )

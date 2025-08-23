@@ -8,7 +8,7 @@ def list_questionnaires(active_only: bool = False) -> List[Dict[str, Any]]:
 
     sb = get_admin_client()
     query = sb.table("questionnaires").select(
-        "id,title,estimated_duration_minutes,is_active"
+        "id,title,description,estimated_duration_minutes,is_active,mode"
     )
     if active_only:
         query = query.eq("is_active", True)
@@ -25,7 +25,9 @@ def get_questionnaire(qid: str) -> Optional[Dict[str, Any]]:
     sb = get_admin_client()
     res = (
         sb.table("questionnaires")
-        .select("id,title,estimated_duration_minutes,is_active")
+        .select(
+            "id,title,description,estimated_duration_minutes,is_active,mode"
+        )
         .eq("id", qid)
         .limit(1)
         .execute()
