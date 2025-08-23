@@ -58,10 +58,13 @@ class FakeTable:
 class FakeSupabase:
     def __init__(self):
         self.users = []
+        self.profiles = []
 
     def table(self, name):
         if name == "users":
             return FakeTable(self.users)
+        if name == "profiles":
+            return FakeTable(self.profiles)
         return FakeTable([])
 
 
@@ -145,3 +148,29 @@ def test_login_csrf_failure(fake_supabase):
     )
     assert resp.status_code == 200
     assert "Érvénytelen kérés" in resp.text
+
+
+def test_admin_route_requires_admin(fake_supabase):
+    users.clear_users()
+    client = TestClient(app)
+
+    register(client, "user@example.com", "secret", "User")
+    resp = login(client, "user@example.com", "secret")
+    client.cookies.set(settings.COOKIE_NAME, resp.cookies.get(settings.COOKIE_NAME))
+
+    r = client.get("/admin/q/new")
+    assert r.status_code == 401
+
+
+def test_admin_route_for_admin(fake_supabase):
+    users.clear_users()
+    client = TestClient(app)
+
+    register(client, "admin@example.com", "secret", "Admin")
+    admin_user = users.get_user_by_email("admin@example.com")
+    fake_supabase.profiles.append({"id": admin_user["id"], "role": "admin"})
+    resp = login(client, "admin@example.com", "secret")
+    client.cookies.set(settings.COOKIE_NAME, resp.cookies.get(settings.COOKIE_NAME))
+
+    r = client.get("/admin/q/new")
+    assert r.status_code == 200

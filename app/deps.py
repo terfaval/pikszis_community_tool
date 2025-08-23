@@ -31,9 +31,15 @@ async def get_current_user(request: Request):
         if wants_html:
             raise HTTPException(status_code=302, headers={"Location": "/login"})
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+    
+    profile_result = (
+        admin.table("profiles").select("role").eq("id", user_id).execute()
+    )
+    profile = profile_result.data[0] if profile_result.data else None
+    
     return {
         "id": user["id"],
         "email": user["email"],
         "display_name": user["display_name"],
-        "is_admin": user.get("is_admin", False),
+        "is_admin": profile.get("role") == "admin" if profile else False,
     }
