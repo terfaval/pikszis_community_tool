@@ -16,18 +16,12 @@ def get_templates(request: Request) -> Jinja2Templates:
 async def app_hub(request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
     result = (
-        supabase.table("questionnaires")
-        .select("*")
-        .eq("is_active", True)
-        .execute()
+        supabase.table("questionnaires").select("*").eq("is_active", True).execute()
     )
     questionnaires = result.data or []
 
-    return request.app.state.templates.TemplateResponse(
+    return templates.TemplateResponse(
+        request,
         "hub.html",
-        {
-            "request": request,
-            "questionnaires": questionnaires,
-            "user": user,
-        },
+        {"questionnaires": questionnaires, "user": user},
     )

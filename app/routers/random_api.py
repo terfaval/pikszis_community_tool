@@ -19,13 +19,15 @@ async def random_question(request: Request, user=Depends(get_current_user)):
     templates = get_templates(request)
     if not question:
         return templates.TemplateResponse(
+            request,
             "random_question_card.html",
-            {"request": request, "message": "Come back later"},
+            {"message": "Come back later"},
         )
     csrf = ""  # no CSRF for HTMX demo
     return templates.TemplateResponse(
+        request,
         "random_question_card.html",
-        {"request": request, "question": question, "csrf": csrf},
+        {"question": question, "csrf": csrf},
     )
 
 

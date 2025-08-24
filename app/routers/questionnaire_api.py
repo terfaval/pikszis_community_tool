@@ -42,13 +42,13 @@ async def run_questionnaire(qid: str, request: Request, user=Depends(get_current
             "id", sub["id"]
         ).execute()
         return templates.TemplateResponse(
-            "questionnaire_runner.html", {"request": request, "completed": True}
+            request, "questionnaire_runner.html", {"completed": True}
         )
     question = questions[idx]
     return templates.TemplateResponse(
+        request,
         "questionnaire_runner.html",
         {
-            "request": request,
             "question": question,
             "progress": (idx + 1, len(questions)),
             "qid": qid,
@@ -80,8 +80,8 @@ async def answer_question(
             normalized = {"text": value}
 
         elif qtype == "open_multiple":
-    # value formátum: JSON string vagy több mező -> itt input nevétől függ
-    # javaslat: value helyett több inputot küldünk: value_1, value_2, ...
+            # value formátum: JSON string vagy több mező -> itt input nevétől függ
+            # javaslat: value helyett több inputot küldünk: value_1, value_2, ...
             data = {}
             for i in range(1, 10):  # upper bound
                 v = request.form()._dict.get(f"value_{i}")  # vagy await request.form()

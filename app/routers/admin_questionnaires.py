@@ -1,24 +1,27 @@
-from fastapi import APIRouter, Request, Depends, Form, HTTPException, Body
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter, Body, Depends, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette import status
 from typing import Optional, List, Dict, Any
 
 from app.db.questionnaires import (
-    list_questionnaires,
     get_questionnaire,
+    list_questionnaires,
     upsert_questionnaire,
 )
-from app.deps import get_current_user
 from app.db.questions import (
-    list_questions,
     get_question,
-    upsert_question,
-    reorder_questions,
     list_question_options,
-    replace_question_options,
+    list_questions,
     reorder_question_options,
+    reorder_questions,
+    replace_question_options,
+    upsert_question,
 )
+from app.deps import get_current_user
+
 
 def require_admin(user=Depends(get_current_user)):
     if not user.get("is_admin"):
@@ -45,16 +48,18 @@ def normalize_length_minutes(value: Optional[str]) -> Optional[int]:
 def admin_q_index(request: Request, user=Depends(require_admin)):
     qs = list_questionnaires(active_only=False)
     return templates.TemplateResponse(
+        request,
         "admin/questionnaires.html",
-        {"request": request, "user": user, "questionnaires": qs},
+        {"user": user, "questionnaires": qs},
     )
 
 
 @router.get("/new")
 def admin_q_new(request: Request, user=Depends(require_admin)):
     return templates.TemplateResponse(
+        request,
         "admin/questionnaire_form.html",
-        {"request": request, "user": user, "q": {}},
+        {"user": user, "q": {}},
     )
 
 
@@ -65,8 +70,9 @@ def admin_q_edit(questionnaire_id: str, request: Request, user=Depends(require_a
         raise HTTPException(status_code=404, detail="Questionnaire not found")
     questions = list_questions(questionnaire_id)
     return templates.TemplateResponse(
+        request,
         "admin/questionnaire_edit.html",
-        {"request": request, "user": user, "q": q, "questions": questions},
+        {"user": user, "q": q, "questions": questions},
     )
 
 
@@ -106,12 +112,14 @@ def admin_q_reorder(
 
 
 @router.get("/{questionnaire_id}/new")
-def admin_question_new(questionnaire_id: str, request: Request, user=Depends(require_admin)):
+def admin_question_new(
+    questionnaire_id: str, request: Request, user=Depends(require_admin)
+):
     q = {"questionnaire_id": questionnaire_id}
     return templates.TemplateResponse(
+        request,
         "admin/question_form.html",
         {
-            "request": request,
             "user": user,
             "questionnaire_id": questionnaire_id,
             "question": q,
@@ -137,9 +145,9 @@ def admin_question_edit(
             {"label": "Hamis", "value": "false"},
         ]
     return templates.TemplateResponse(
+        request,
         "admin/question_form.html",
         {
-            "request": request,
             "user": user,
             "questionnaire_id": questionnaire_id,
             "question": q,
@@ -184,11 +192,11 @@ def admin_question_upsert(
 
     options = []
     for idx, label in enumerate(option_label):
-        l = label.strip()
-        if not l:
+        cleaned_label = label.strip()
+        if not cleaned_label:
             continue
         val = option_value[idx] if idx < len(option_value) else None
-        options.append({"label": l, "value": val})
+        options.append({"label": cleaned_label, "value": val})
     replace_question_options(q["id"], options)
 
     return RedirectResponse(

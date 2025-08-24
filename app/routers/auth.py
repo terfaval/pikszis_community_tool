@@ -29,7 +29,7 @@ async def register_form(request: Request):
     templates = get_templates(request)
     token = generate_csrf_token()
     response = templates.TemplateResponse(
-        "auth_register.html", {"request": request, "csrf": token}
+        request, "auth_register.html", {"csrf": token}
     )
     set_csrf(response, token)
     return response
@@ -49,9 +49,9 @@ async def register(
         logger.info("Registration CSRF validation failed for %s", email)
         token = generate_csrf_token()
         response = templates.TemplateResponse(
+            request,
             "auth_register.html",
             {
-                "request": request,
                 "csrf": token,
                 "error": "Érvénytelen kérés. Próbáld újra.",
             },
@@ -65,9 +65,9 @@ async def register(
         logger.info("Registration email exists %s", email)
         token = generate_csrf_token()
         response = templates.TemplateResponse(
+            request,
             "auth_register.html",
             {
-                "request": request,
                 "csrf": token,
                 "error": "Ezzel az e-mail címmel már van felhasználó. Jelentkezz be.",
             },
@@ -88,9 +88,7 @@ async def register(
 async def login_form(request: Request):
     templates = get_templates(request)
     token = generate_csrf_token()
-    response = templates.TemplateResponse(
-        "auth_login.html", {"request": request, "csrf": token}
-    )
+    response = templates.TemplateResponse(request, "auth_login.html", {"csrf": token})
     set_csrf(response, token)
     return response
 
@@ -108,9 +106,9 @@ async def login(
         logger.info("Login CSRF validation failed for %s", email)
         token = generate_csrf_token()
         response = templates.TemplateResponse(
+            request,
             "auth_login.html",
             {
-                "request": request,
                 "csrf": token,
                 "error": "Érvénytelen kérés. Próbáld újra.",
             },
@@ -126,9 +124,9 @@ async def login(
         logger.info("Login failed, no user for %s", email)
         token = generate_csrf_token()
         response = templates.TemplateResponse(
+            request,
             "auth_login.html",
             {
-                "request": request,
                 "csrf": token,
                 "error": "Ezzel az e-mail címmel nincs felhasználó. Regisztrálj.",
             },
@@ -140,9 +138,9 @@ async def login(
         logger.info("Login failed, bad password for %s", email)
         token = generate_csrf_token()
         response = templates.TemplateResponse(
+            request,
             "auth_login.html",
             {
-                "request": request,
                 "csrf": token,
                 "error": "Hibás jelszó.",
             },
